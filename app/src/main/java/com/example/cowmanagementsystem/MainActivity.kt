@@ -14,16 +14,15 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cowmanagementsystem.ui.theme.CowManagementSystemTheme
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import kotlin.math.log
 
 class MainActivity : ComponentActivity() {
 
@@ -47,7 +46,7 @@ class MainActivity : ComponentActivity() {
                     )
                     GenerateInputs(
                         modifier = Modifier,
-                        fields = arrayOf("Gebruikersnaam","Wachtwoord")
+                        showFields = arrayOf("Gebruikersnaam","Wachtwoord")
                     )
 
 
@@ -80,15 +79,19 @@ fun GreetingPreview() {
 }
 
 @Composable
-fun GenerateInputs(modifier: Modifier, fields: Array<String>){
-    val numberOfFields = fields.size
-    val resourcesField = remember { mutableStateListOf("")}
+fun GenerateInputs(modifier: Modifier, showFields: Array<String>){
+//    val numberOfFields = fields.size
+    val fields = listOf("userName", "password")
+    val resourcesField = remember { mutableStateMapOf(
+            fields[0] to "",
+            fields[1] to ""
+        )}
 
-    var numberOfLoops = 0
-    while (numberOfLoops < numberOfFields - 1){
-        resourcesField.add("")
-        numberOfLoops++
-    }
+//    var numberOfLoops = 0
+//    while (numberOfLoops < numberOfFields - 1){
+//        resourcesField.add("")
+//        numberOfLoops++
+//    }
 
     Column(
         modifier = modifier
@@ -101,9 +104,9 @@ fun GenerateInputs(modifier: Modifier, fields: Array<String>){
     ) {
         for ( i in fields.indices) {
             OutlinedTextField(
-                value = resourcesField[i],
-                onValueChange = { resourcesField[i] = it },
-                label = { Text(fields[i]) },
+                value = resourcesField[fields[i]] ?: "" ,
+                onValueChange = { resourcesField[fields[i]] = it },
+                label = { Text(showFields[i]) },
 
 
             )
@@ -113,7 +116,7 @@ fun GenerateInputs(modifier: Modifier, fields: Array<String>){
 }
 
 @Composable
-fun GenerateButton(resourcesField: SnapshotStateList<String>, name: String) {
+fun GenerateButton(resourcesField: SnapshotStateMap<String, String>, name: String) {
     val context = LocalContext.current
 
     val database = remember {
@@ -134,8 +137,9 @@ fun GenerateButton(resourcesField: SnapshotStateList<String>, name: String) {
 
                   }
                   Log.d("value:", "$value: ")
-                  database.voegNaamToe("hallo")
+
               }
+              database.voegNaamToe(resourcesField, "users" )
             } ) {
             Text(
                 name

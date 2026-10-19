@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation("org.mindrot:jbcrypt:0.4")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
