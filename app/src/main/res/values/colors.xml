@@ -8,4 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="custum_blue">#ff85bfd4</color>
+    <color name="custum_primaryBlue">#009688</color>
+    <color name="CustumLightBlue">#E0F2F1</color>
+    <color name="CustumGray">#263238</color>
+    <color name="CustumDarkBlue">#176B78</color>
+    <color name="CustumLightWihte">#F4F7F8</color>
+
 </resources>

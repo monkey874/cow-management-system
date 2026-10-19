@@ -23,6 +23,8 @@ import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import android.content.Intent
+import kotlin.jvm.java
 
 class MainActivity : ComponentActivity() {
 
@@ -79,41 +81,57 @@ fun GreetingPreview() {
 }
 
 @Composable
-fun GenerateInputs(modifier: Modifier, showFields: Array<String>){
-//    val numberOfFields = fields.size
+fun GenerateInputs(
+    modifier: Modifier,
+    showFields: Array<String>
+) {
     val fields = listOf("userName", "password")
-    val resourcesField = remember { mutableStateMapOf(
+
+    val resourcesField = remember {
+        mutableStateMapOf(
             fields[0] to "",
             fields[1] to ""
-        )}
+        )
+    }
 
-//    var numberOfLoops = 0
-//    while (numberOfLoops < numberOfFields - 1){
-//        resourcesField.add("")
-//        numberOfLoops++
-//    }
+    // Context moet buiten de Column staan
+    val context = LocalContext.current
 
     Column(
         modifier = modifier
             .padding(16.dp)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-
-
+        verticalArrangement = Arrangement.Center
     ) {
-        for ( i in fields.indices) {
+        for (i in fields.indices) {
             OutlinedTextField(
-                value = resourcesField[fields[i]] ?: "" ,
-                onValueChange = { resourcesField[fields[i]] = it },
-                label = { Text(showFields[i]) },
-
-
+                value = resourcesField[fields[i]] ?: "",
+                onValueChange = {
+                    resourcesField[fields[i]] = it
+                },
+                label = {
+                    Text(showFields[i])
+                }
             )
         }
+
         GenerateButton(resourcesField, "Login")
+
+        Button(
+            onClick = {
+                val intent = Intent(
+                    context,
+                    ShowAllCows::class.java
+                )
+                context.startActivity(intent)
+            }
+        ) {
+            Text("Alle koeien bekijken")
+        }
     }
 }
+
 
 @Composable
 fun GenerateButton(resourcesField: SnapshotStateMap<String, String>, name: String) {

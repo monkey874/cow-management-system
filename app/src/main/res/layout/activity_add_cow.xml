@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/CustumLightWihte"
+    android:visibility="visible"
+    tools:context=".ui.theme.addCow"
+    tools:visibility="visible">
+
+    <RadioGroup
+        android:layout_width="234dp"
+        android:layout_height="251dp"
+        android:background="@color/CustumLightBlue"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="483dp">
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:checked="true"
+            android:rotationY="0"
+            android:text="rood-wit"
+            android:textColor="@color/CustumGray"
+            tools:layout_editor_absoluteX="70dp"
+            tools:layout_editor_absoluteY="380dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton9"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:checked="true"
+            android:rotationY="0"
+            android:text="Effen rood"
+            android:textColor="@color/CustumGray"
+            tools:layout_editor_absoluteX="70dp"
+            tools:layout_editor_absoluteY="420dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:checked="true"
+            android:rotationY="0"
+            android:text="zwart-wit"
+            android:textColor="@color/CustumGray" />
+
+        <RadioButton
+            android:id="@+id/radioButton7"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:checked="true"
+            android:rotationY="0"
+            android:text="Effen zwart"
+            android:textColor="@color/CustumGray"
+            android:textColorLink="#009688" />
+
+        <RadioButton
+            android:id="@+id/radioButton8"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:checked="true"
+            android:rotationY="0"
+            android:text="Effen bruin"
+            android:textColor="@color/CustumGray"
+            android:textColorLink="#009688" />
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:checked="true"
+            android:rotationY="0"
+            android:text="bruin-wit"
+            android:textColor="@color/CustumGray"
+            android:textColorLink="#009688" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="234dp"
+        android:layout_height="86dp"
+        android:background="@color/CustumLightBlue"
+        android:backgroundTintMode="add"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="329dp">
+
+        <RadioButton
+            android:id="@+id/radioButton11"
+            android:layout_width="220dp"
+            android:layout_height="36dp"
+            android:text="mannelijke"
+            android:textColor="@color/CustumGray" />
+
+        <RadioButton
+            android:id="@+id/radioButton10"
+            android:layout_width="220dp"
+            android:layout_height="36dp"
+            android:text="vrouwlijke"
+            android:textColor="@color/CustumGray" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="234dp"
+        android:layout_height="21dp"
+        android:text="kleur"
+        android:textColor="@color/CustumDarkBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="450dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="234dp"
+        android:layout_height="21dp"
+        android:text="geslacht"
+        android:textColor="@color/CustumDarkBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="295dp" />
+
+    <EditText
+        android:id="@+id/editTextDate3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:text="geboortedatum"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="217dp" />
+
+    <EditText
+        android:id="@+id/editTextDate4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:text="oormerknummer"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="161dp" />
+
+    <EditText
+        android:id="@+id/editTextDate6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:text="Koenummer"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="103dp" />
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="opslaan"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="765dp" />
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
