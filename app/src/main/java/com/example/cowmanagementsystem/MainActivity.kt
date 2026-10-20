@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import android.content.Intent
+import com.example.cowmanagementsystem.ui.theme.addCow
 import kotlin.jvm.java
 
 class MainActivity : ComponentActivity() {
@@ -122,7 +123,7 @@ fun GenerateInputs(
             onClick = {
                 val intent = Intent(
                     context,
-                    ShowAllCows::class.java
+                    addCow::class.java
                 )
                 context.startActivity(intent)
             }

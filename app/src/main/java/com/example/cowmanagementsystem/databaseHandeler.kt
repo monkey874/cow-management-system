@@ -11,7 +11,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 
 class DatabaseHelper(context: Context) :
-    SQLiteOpenHelper(context, "namen.db", null, 3) {
+    SQLiteOpenHelper(context, "namen.db", null, 4) {
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
@@ -30,6 +30,19 @@ class DatabaseHelper(context: Context) :
                 password TEXT NOT NULL,
                 roleId TEXT NOT NULL,
                 active TEXT NOT NULL
+                
+            )
+            """.trimIndent()
+        )
+        db.execSQL(
+            """
+            CREATE TABLE cows (
+                cowID INTEGER PRIMARY KEY AUTOINCREMENT,
+                cowNumber TEXT NOT NULL,
+                earTagNumber TEXT NOT NULL,
+                gender TEXT NOT NULL,
+                color TEXT NOT NULL,
+                dayOfBirth TEXT NOT NULL
                 
             )
             """.trimIndent()
