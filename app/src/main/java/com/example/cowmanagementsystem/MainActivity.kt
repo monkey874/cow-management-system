@@ -130,6 +130,19 @@ fun GenerateInputs(
         ) {
             Text("Alle koeien bekijken")
         }
+
+
+        Button(
+            onClick = {
+                val intent = Intent(
+                    context,
+                    add_notifications::class.java
+                )
+                context.startActivity(intent)
+            }
+        ) {
+            Text("Alle meldingen bekijken")
+        }
     }
 }
 
