@@ -154,6 +154,18 @@ fun GenerateInputs(
         ) {
             Text("behandeling aanmaken")
         }
+
+        Button(
+            onClick = {
+                val intent = Intent(
+                    context,
+                    ShowAllCows::class.java
+                )
+                context.startActivity(intent)
+            }
+        ) {
+            Text("koeien lijst")
+        }
     }
 }
 

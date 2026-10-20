@@ -128,20 +128,40 @@ class DatabaseHelper(context: Context) :
         )
     }
 
-    fun haalNamenOp(): List<String> {
+    fun haalNamenOp(tableName: String, fields: List<String>): MutableList<Map<String, String>> {
         val namen = mutableListOf<String>()
+        val tables = arrayOf("cows","users","treatments","cowTreatments","notifications","roles","history")
 
+        val hasTable = tables.contains(tableName)
+        if (!hasTable){
+            Log.d("DB", "The database table doesn't exist")
+        }
+
+        val columns = fields.joinToString(", ")
         val cursor = readableDatabase.rawQuery(
-            "SELECT naam FROM namen",
+            "SELECT $columns FROM $tableName",
             null
         )
 
+        val info = mutableListOf<Map<String, String>>()
+
         cursor.use {
             while (it.moveToNext()) {
-                namen.add(it.getString(0))
+
+                val row = mutableMapOf<String, String>()
+
+                for (i in 0 until it.columnCount) {
+                    val columnName = it.getColumnName(i)
+                    val value = it.getString(i) ?: ""
+
+                    row[columnName] = value
+                }
+
+                info.add(row)
             }
         }
 
-        return namen
+
+        return info
     }
 }
