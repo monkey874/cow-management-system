@@ -143,6 +143,17 @@ fun GenerateInputs(
         ) {
             Text("Alle meldingen bekijken")
         }
+        Button(
+            onClick = {
+                val intent = Intent(
+                    context,
+                    addTreatment::class.java
+                )
+                context.startActivity(intent)
+            }
+        ) {
+            Text("behandeling aanmaken")
+        }
     }
 }
 

@@ -11,7 +11,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 
 class DatabaseHelper(context: Context) :
-    SQLiteOpenHelper(context, "namen.db", null, 5) {
+    SQLiteOpenHelper(context, "namen.db", null, 6) {
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
@@ -61,6 +61,16 @@ class DatabaseHelper(context: Context) :
             )
             """.trimIndent()
         )
+        db.execSQL(
+            """
+            CREATE TABLE treatments (
+                treatmentId INTEGER PRIMARY KEY AUTOINCREMENT,
+                treatmentName TEXT NOT NULL,
+                treatmentDescription TEXT NOT NULL
+            )
+            """.trimIndent()
+        )
+
     }
 
     override fun onUpgrade(
@@ -71,6 +81,7 @@ class DatabaseHelper(context: Context) :
             db.execSQL("DROP TABLE IF EXISTS users")
             db.execSQL("DROP TABLE IF EXISTS namen")
             db.execSQL("DROP TABLE IF EXISTS cows")
+            db.execSQL("DROP TABLE IF EXISTS notifications")
             onCreate(db)
     }
 
