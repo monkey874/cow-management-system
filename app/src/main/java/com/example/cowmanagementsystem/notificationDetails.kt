@@ -1,7 +1,9 @@
 package com.example.cowmanagementsystem
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -35,10 +37,10 @@ class notificationDetails : AppCompatActivity() {
 
         Log.d("123", "$info")
 
+        val cow = info[0]
         if (info.isNotEmpty()) {
 
 
-            val cow = info[0]
             title.text = "Melding: ${cow["title"]}"
             Desc.text = "De informatie van melding word hier weegegeven."
 
@@ -47,6 +49,30 @@ class notificationDetails : AppCompatActivity() {
 
         }
 
+        val btn = findViewById<Button>(R.id.button1)
+        btn.setOnClickListener {
+            delehte()
+            val intent = Intent(
+                this,
+                showAllNotifications::class.java
+            )
 
+
+            startActivity(intent)
+        }
+
+
+    }
+
+    fun delehte(){
+        val cowId = intent.getStringExtra("notificationId")
+
+        val dbHelper = DatabaseHelper(this)
+        dbHelper.delethe(
+            "notifications",
+            cowId?.toIntOrNull() ?: 0,
+            "notificationId",
+
+            )
     }
 }

@@ -110,7 +110,20 @@
                     android:textColor="#546E7A"
                     android:textSize="16sp" />
 
+
             </LinearLayout>
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:backgroundTint="#009688"
+                    android:text="melding verwijderen"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
 
         </LinearLayout>
 
