@@ -1,13 +1,11 @@
 package com.example.cowmanagementsystem
 
-import android.R
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import org.mindrot.jbcrypt.BCrypt
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 
 class DatabaseHelper(context: Context) :
@@ -127,9 +125,44 @@ class DatabaseHelper(context: Context) :
             tableName, null, values
         )
     }
+    fun getId(tableName: String, recordId: Int?): MutableList<Map<String, String>>{
+        val tables = arrayOf("cows","users","treatments","cowTreatments","notifications","roles","history")
 
+        val hasTable = tables.contains(tableName)
+        if (!hasTable){
+            Log.d("DB", "The database table doesn't exist")
+        }
+
+
+        val cursor = readableDatabase.rawQuery(
+            "SELECT * FROM $tableName WHERE cowID = $recordId",
+            null
+        )
+
+        val info = mutableListOf<Map<String, String>>()
+
+        cursor.use {
+            while (it.moveToNext()) {
+
+                val row = mutableMapOf<String, String>()
+
+                for (i in 0 until it.columnCount) {
+                    val columnName = it.getColumnName(i)
+                    val value = it.getString(i) ?: ""
+
+                    row[columnName] = value
+                }
+
+                info.add(row)
+            }
+        }
+
+
+        return info
+
+    }
     fun haalNamenOp(tableName: String, fields: List<String>): MutableList<Map<String, String>> {
-        val namen = mutableListOf<String>()
+
         val tables = arrayOf("cows","users","treatments","cowTreatments","notifications","roles","history")
 
         val hasTable = tables.contains(tableName)

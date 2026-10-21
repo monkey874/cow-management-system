@@ -1,12 +1,12 @@
 
 package com.example.cowmanagementsystem
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -22,11 +22,16 @@ class ShowAllCows : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-       showAll()
+        ShowAll()
+
+
 
     }
 
-    fun showAll(){
+
+
+
+    fun ShowAll(){
         val container = findViewById<LinearLayout>(R.id.linarLayoud)
 
         val dbHelper = DatabaseHelper(this)
@@ -40,6 +45,21 @@ class ShowAllCows : AppCompatActivity() {
                 setPadding(16, 16, 16, 16)
                 background = getDrawable(R.drawable.bg_option_group)
 
+            }
+            val context = this
+            cowLayout.setOnClickListener {
+
+                val intent = Intent(
+                    this,
+                    activity_cow_details::class.java
+                )
+
+                intent.putExtra(
+                    "cowId",
+                    cow["cowID"].toString()
+                )
+
+                startActivity(intent)
             }
 
                 val textView = TextView(this).apply {

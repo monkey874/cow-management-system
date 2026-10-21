@@ -166,6 +166,30 @@ fun GenerateInputs(
         ) {
             Text("koeien lijst")
         }
+
+        Button(
+            onClick = {
+                val intent = Intent(
+                    context,
+                    showAllNotifications::class.java
+                )
+                context.startActivity(intent)
+            }
+        ) {
+            Text("notificatie lijst")
+        }
+
+        Button(
+            onClick = {
+                val intent = Intent(
+                    context,
+                    activity_cow_details::class.java
+                )
+                context.startActivity(intent)
+            }
+        ) {
+            Text("koe details lijst")
+        }
     }
 }
 
