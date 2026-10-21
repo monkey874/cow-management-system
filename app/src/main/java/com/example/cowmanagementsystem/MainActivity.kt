@@ -190,6 +190,50 @@ fun GenerateInputs(
         ) {
             Text("koe details lijst")
         }
+        Button(
+            onClick = {
+                val intent = Intent(
+                    context,
+                    login::class.java
+                )
+                context.startActivity(intent)
+            }
+        ) {
+            Text("login")
+        }
+        Button(
+            onClick = {
+                val intent = Intent(
+                    context,
+                    makeUser::class.java
+                )
+                context.startActivity(intent)
+            }
+        ) {
+            Text("maak gebruiker")
+        }
+        Button(
+            onClick = {
+                val intent = Intent(
+                    context,
+                    showAllUsers::class.java
+                )
+                context.startActivity(intent)
+            }
+        ) {
+            Text("toon alle gebruiker")
+        }
+        Button(
+            onClick = {
+                val intent = Intent(
+                    context,
+                    userDetails::class.java
+                )
+                context.startActivity(intent)
+            }
+        ) {
+            Text("user gegevens alle gebruiker")
+        }
     }
 }
 
