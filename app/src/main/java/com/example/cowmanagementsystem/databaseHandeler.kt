@@ -2,11 +2,13 @@ package com.example.cowmanagementsystem
 
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import org.mindrot.jbcrypt.BCrypt
 import androidx.compose.runtime.snapshots.SnapshotStateMap
+import androidx.core.content.ContextCompat.startActivity
 
 class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, "namen.db", null, 6) {
@@ -125,7 +127,7 @@ class DatabaseHelper(context: Context) :
             tableName, null, values
         )
     }
-    fun getId(tableName: String, recordId: Int?): MutableList<Map<String, String>>{
+    fun getId(tableName: String, recordId: Int?, cowId: String): MutableList<Map<String, String>>{
         val tables = arrayOf("cows","users","treatments","cowTreatments","notifications","roles","history")
 
         val hasTable = tables.contains(tableName)
@@ -135,7 +137,7 @@ class DatabaseHelper(context: Context) :
 
 
         val cursor = readableDatabase.rawQuery(
-            "SELECT * FROM $tableName WHERE cowID = $recordId",
+            "SELECT * FROM $tableName WHERE $cowId = $recordId",
             null
         )
 
@@ -196,5 +198,24 @@ class DatabaseHelper(context: Context) :
 
 
         return info
+    }
+
+    fun delethe(tableName: String, recordId: Int?, cowID: String){
+        val tables = arrayOf("cows","users","treatments","cowTreatments","notifications","roles","history")
+
+        val hasTable = tables.contains(tableName)
+        if (!hasTable){
+            Log.d("DB", "The database table doesn't exist")
+        }
+
+        Log.d("db","${tableName.toString()}")
+        Log.d("db","${recordId.toString()}")
+        Log.d("db","${cowID.toString()}")
+
+        val cursor = readableDatabase.execSQL(
+            "DELETE FROM $tableName WHERE $cowID = $recordId",
+
+        )
+
     }
 }

@@ -1,12 +1,16 @@
 package com.example.cowmanagementsystem
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.cowmanagementsystem.DatabaseHelper
 
 class activity_cow_details() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +29,7 @@ class activity_cow_details() : AppCompatActivity() {
 
         val dbHelper = DatabaseHelper(this)
 
-        val info = dbHelper.getId("cows", cowId?.toIntOrNull() ?: 0 )
+        val info = dbHelper.getId("cows", cowId?.toIntOrNull() ?: 0, "cowId" )
 
         val cowDesc = findViewById<TextView>(R.id.desc)
         val cowTitle = findViewById<TextView>(R.id.title)
@@ -52,8 +56,36 @@ class activity_cow_details() : AppCompatActivity() {
             color.text = ("Kleur: " + cow["color"]?.toString()) ?: ""
             gender.text = ("Geslacht: " + cow["gender"]?.toString()) ?: ""
             dayOfBurte.text = ("GeboorteDatum: " + cow["dayOfBirth"]?.toString()) ?: ""
+
+        }
+        val destroButton = findViewById<Button>(R.id.button1)
+        destroButton.setOnClickListener{
+            DeleteNow()
+            val context = this
+
+            val intent = Intent(
+                this,
+                ShowAllCows::class.java
+            )
+
+
+            startActivity(intent)
         }
 
 
+
+    }
+
+
+    fun DeleteNow() {
+        val cowId = intent.getStringExtra("cowId")
+
+        val dbHelper = DatabaseHelper(this)
+        dbHelper.delethe(
+            "cows",
+            cowId?.toIntOrNull() ?: 0,
+            "cowID",
+
+        )
     }
 }

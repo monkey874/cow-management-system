@@ -25,7 +25,7 @@ class notificationDetails : AppCompatActivity() {
 
         val dbHelper = DatabaseHelper(this)
 
-        val info = dbHelper.getId("notifications", cowId?.toIntOrNull() ?: 0 )
+        val info = dbHelper.getId("notifications", cowId?.toIntOrNull() ?: 0, "notificationId" )
 
         val Desc = findViewById<TextView>(R.id.desc)
         val title = findViewById<TextView>(R.id.title)
