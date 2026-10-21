@@ -1,5 +1,6 @@
 package com.example.cowmanagementsystem
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.LinearLayout
@@ -36,6 +37,22 @@ class showAllNotifications : AppCompatActivity() {
                 setPadding(16, 16, 16, 16)
                 background = getDrawable(R.drawable.bg_option_group)
 
+            }
+
+            val context = this
+            cowLayout.setOnClickListener {
+
+                val intent = Intent(
+                    this,
+                    notificationDetails::class.java
+                )
+
+                intent.putExtra(
+                    "notificationId",
+                    cow["notificationId"].toString()
+                )
+
+                startActivity(intent)
             }
 
             val textView = TextView(this).apply {
