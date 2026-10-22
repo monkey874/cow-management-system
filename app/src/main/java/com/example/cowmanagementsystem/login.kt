@@ -17,4 +17,8 @@ class login : AppCompatActivity() {
             insets
         }
     }
+
+    fun test(){
+
+    }
 }

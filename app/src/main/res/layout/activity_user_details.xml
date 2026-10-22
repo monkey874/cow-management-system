@@ -74,6 +74,26 @@
                         android:textColor="#546E7A"
                         android:textSize="16sp" />
 
+
+                    <TextView
+                        android:id="@+id/textOmschrijving"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Gebruikersnaam:"
+                        android:textColor="#176B78"
+                        android:textSize="19sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:id="@+id/titleOmschrijving"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="10dp"
+                        android:text=""
+                        android:textColor="#546E7A"
+                        android:textSize="16sp" />
+
                 </LinearLayout>
 
             </LinearLayout>
