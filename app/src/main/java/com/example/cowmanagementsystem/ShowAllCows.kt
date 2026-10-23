@@ -13,6 +13,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class ShowAllCows : AppCompatActivity() {
+    companion object{
+        var cowId: Int = 0
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -58,6 +61,7 @@ class ShowAllCows : AppCompatActivity() {
                     "cowId",
                     cow["cowID"].toString()
                 )
+                cowId = cow["cowID"]?.toIntOrNull() ?: 0
 
                 startActivity(intent)
             }

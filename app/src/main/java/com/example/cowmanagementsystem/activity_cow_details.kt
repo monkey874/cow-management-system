@@ -72,6 +72,19 @@ class activity_cow_details() : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val treatmentButton = findViewById<Button>(R.id.button)
+        treatmentButton.setOnClickListener{
+            val context = this
+
+            val intent = Intent(
+                this,
+                addOwnTreatment::class.java
+            )
+
+
+            startActivity(intent)
+        }
+
 
 
     }

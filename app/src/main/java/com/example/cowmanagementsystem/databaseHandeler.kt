@@ -11,7 +11,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.core.content.ContextCompat.startActivity
 
 class DatabaseHelper(context: Context) :
-    SQLiteOpenHelper(context, "namen.db", null, 8) {
+    SQLiteOpenHelper(context, "namen.db", null, 11) {
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
@@ -59,6 +59,7 @@ class DatabaseHelper(context: Context) :
                 processed TEXT NOT NULL,
                 FOREIGN KEY (userId) REFERENCES users(userId)
                 
+                
             )
             """.trimIndent()
         )
@@ -68,6 +69,23 @@ class DatabaseHelper(context: Context) :
                 treatmentId INTEGER PRIMARY KEY AUTOINCREMENT,
                 treatmentName TEXT NOT NULL,
                 treatmentDescription TEXT NOT NULL
+            )
+            """.trimIndent()
+        )
+        db.execSQL(
+            """
+            CREATE TABLE cowTreatments (
+                cowTreatmentId INTEGER PRIMARY KEY AUTOINCREMENT,
+                treatmentId TEXT NOT NULL,
+                extratreatmentDescription TEXT NOT NULL,
+                cowId TEXT NOT NULL,
+                userID TEXT NOT NULL,
+                doneOn TEXT NOT NULL,
+                FOREIGN KEY (userID) REFERENCES users(userId),
+                FOREIGN KEY (cowId) REFERENCES cows(cowId),
+                FOREIGN KEY (treatmentId) REFERENCES treatments(treatmentId)
+                
+                
             )
             """.trimIndent()
         )
@@ -84,6 +102,7 @@ class DatabaseHelper(context: Context) :
         db.execSQL("DROP TABLE IF EXISTS cows")
         db.execSQL("DROP TABLE IF EXISTS notifications")
         db.execSQL("DROP TABLE IF EXISTS treatments")
+        db.execSQL("DROP TABLE IF EXISTS cowTreatments")
 
         onCreate(db)
     }
@@ -105,10 +124,10 @@ class DatabaseHelper(context: Context) :
             "cowTreatments" to listOf(
                 "cowTreatmentId",
                 "treatmentId",
+                "extratreatmentDescription",
                 "cowId",
-                "userId",
-                "startDate",
-                "endDate"
+                "userID",
+                "doneOn"
             ),
             "notifications" to listOf(
                 "notificationId",
