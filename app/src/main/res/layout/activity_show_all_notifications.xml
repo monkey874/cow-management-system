@@ -28,24 +28,53 @@
             android:paddingTop="24dp"
             android:paddingBottom="28dp">
 
-            <TextView
+            <!-- Header: back-knop links, tekst rechts -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Meldingen"
-                android:textColor="#176B78"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_marginBottom="8dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="lijst met alle meldingen"
-                android:textColor="#78909C"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:layout_marginBottom="24dp" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
 
+                <Button
+                    android:id="@+id/btnBack"
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@string/goBack"
+                    android:textColor="#176B78"
+                    android:textSize="22sp"
+                    android:backgroundTint="#E0F2F1" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Meldingen"
+                        android:textColor="#176B78"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:gravity="" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="lijst met alle meldingen"
+                        android:textColor="#78909C"
+                        android:textSize="12sp"
+                        android:gravity=""
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+            </LinearLayout>
 
             <!-- Titel -->
             <LinearLayout

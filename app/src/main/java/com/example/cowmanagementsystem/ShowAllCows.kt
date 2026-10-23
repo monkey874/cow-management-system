@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class ShowAllCows : AppCompatActivity() {
+class ShowAllCows : BaseActivity() {
     companion object{
         var cowId: Int = 0
     }
@@ -26,6 +26,7 @@ class ShowAllCows : AppCompatActivity() {
             insets
         }
         ShowAll()
+        setupBackButton()
 
 
 

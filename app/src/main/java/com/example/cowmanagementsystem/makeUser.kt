@@ -11,7 +11,7 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class makeUser : AppCompatActivity() {
+class makeUser : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,6 +22,7 @@ class makeUser : AppCompatActivity() {
             insets
         }
         makeAccount()
+        setupBackButton()
     }
 
     fun makeAccount(){

@@ -10,7 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.time.LocalDate
 
-class add_notifications : AppCompatActivity() {
+class add_notifications : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,6 +21,7 @@ class add_notifications : AppCompatActivity() {
             insets
         }
         GetAllInfo()
+        setupBackButton()
     }
 
     fun GetAllInfo(){

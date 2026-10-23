@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class showAllNotifications : AppCompatActivity() {
+class showAllNotifications : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,6 +22,7 @@ class showAllNotifications : AppCompatActivity() {
             insets
         }
         showAll()
+        setupBackButton()
     }
 
     fun showAll(){
