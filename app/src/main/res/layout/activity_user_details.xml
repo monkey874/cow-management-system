@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text=""
+            android:text="User:"
             android:textColor="#176B78"
             android:textSize="26sp"
             android:textStyle="bold" />
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:gravity="center"
-            android:text=""
+            android:text="user lijst"
             android:textColor="#78909C"
             android:textSize="14sp" />
 
@@ -39,68 +39,54 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+
+            <!-- Kaart: Algemene gegevens -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
                 android:background="@drawable/bg_input"
                 android:elevation="3dp"
                 android:padding="20dp">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingStart="16dp">
+                    android:text="Algemene gegevens"
+                    android:textColor="#176B78"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Gebruikersnaam:"
-                        android:textColor="#176B78"
-                        android:textSize="19sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="12dp" />
+                <TextView
+                    android:id="@+id/gebruikersnaam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp"
+                    android:text="Gebruikersnaan:"
+                    android:textColor="#546E7A"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/titleOmschrijving"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="10dp"
-                        android:text=""
-                        android:textColor="#546E7A"
-                        android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/role"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp"
+                    android:text="Role:"
+                    android:textColor="#546E7A"
+                    android:textSize="16sp" />
 
-
-                    <TextView
-                        android:id="@+id/textOmschrijving"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Gebruikersnaam:"
-                        android:textColor="#176B78"
-                        android:textSize="19sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="12dp" />
-
-                    <TextView
-                        android:id="@+id/titleOmschrijving"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="10dp"
-                        android:text=""
-                        android:textColor="#546E7A"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp"
+                    android:text="Status:"
+                    android:textColor="#546E7A"
+                    android:textSize="16sp" />
 
             </LinearLayout>
-
-
-
-
 
 
             <Button
@@ -108,13 +94,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:backgroundTint="#009688"
-                android:text="verwijderen gebruiker"
+                android:text="gebruiker verwijderen"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp" />
-
         </LinearLayout>
 
     </LinearLayout>

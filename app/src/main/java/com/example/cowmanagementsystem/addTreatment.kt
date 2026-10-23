@@ -1,6 +1,7 @@
 package com.example.cowmanagementsystem
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
@@ -23,8 +24,6 @@ class addTreatment() : AppCompatActivity() {
     }
 
     fun GetAllInfo(){
-
-
         val saveButton = findViewById<Button>(R.id.button)
 
         saveButton.setOnClickListener {

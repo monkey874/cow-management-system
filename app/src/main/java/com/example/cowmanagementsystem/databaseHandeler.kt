@@ -78,28 +78,51 @@ class DatabaseHelper(context: Context) :
         oldVersion: Int,
         newVersion: Int
     ) {
-            db.execSQL("DROP TABLE IF EXISTS users")
-            db.execSQL("DROP TABLE IF EXISTS namen")
-            db.execSQL("DROP TABLE IF EXISTS cows")
-            db.execSQL("DROP TABLE IF EXISTS notifications")
-            onCreate(db)
+        db.execSQL("DROP TABLE IF EXISTS users")
+        db.execSQL("DROP TABLE IF EXISTS namen")
+        db.execSQL("DROP TABLE IF EXISTS cows")
+        db.execSQL("DROP TABLE IF EXISTS notifications")
+        onCreate(db)
     }
 
     fun voegNaamToe(naam: SnapshotStateMap<String, String>, tableName: String) {
-        val tables = arrayOf("cows","users","treatments","cowTreatments","notifications","roles","history")
+        val tables = arrayOf(
+            "cows",
+            "users",
+            "treatments",
+            "cowTreatments",
+            "notifications",
+            "roles",
+            "history"
+        )
         val colum = mapOf(
-            "cows" to listOf("cowID","cowNumber","earTagNumber","gender", "color", "dayOfBirth"),
+            "cows" to listOf("cowID", "cowNumber", "earTagNumber", "gender", "color", "dayOfBirth"),
             "users" to listOf("userId", "userName", "password", "roleId", "active"),
             "treatments" to listOf("treatmentId", "treatmentName", "treatmentDescription"),
-            "cowTreatments" to listOf("cowTreatmentId", "treatmentId", "cowId", "userId", "startDate", "endDate"),
-            "notifications" to listOf("notificationId", "title", "description", "cowId","userId", "createdOn", "processed"),
+            "cowTreatments" to listOf(
+                "cowTreatmentId",
+                "treatmentId",
+                "cowId",
+                "userId",
+                "startDate",
+                "endDate"
+            ),
+            "notifications" to listOf(
+                "notificationId",
+                "title",
+                "description",
+                "cowId",
+                "userId",
+                "createdOn",
+                "processed"
+            ),
             "roles" to listOf("roleId", "roleName"),
             "history" to listOf("logId", "userId", "action", "table", "recordId", "dateTime")
 
         )
 
         val hasTable = tables.contains(tableName)
-        if (!hasTable){
+        if (!hasTable) {
             Log.d("DB", "The database table doesn't exist")
         }
 
@@ -107,14 +130,14 @@ class DatabaseHelper(context: Context) :
         val columns = colum[tableName]
         val values = ContentValues().apply {
             if (columns != null) {
-                for (x in columns.drop(1)){
-                    if (x == "password"){
+                for (x in columns.drop(1)) {
+                    if (x == "password") {
                         Log.d("123", "ik ben in de crypte")
                         Log.d("123", naam[x].toString())
                         var sriptie = BCrypt.hashpw(naam[x], BCrypt.gensalt())
                         Log.d("123", "ik ben in de crypte dit is de $sriptie")
                         put(x, sriptie ?: "De value is null")
-                    }else{
+                    } else {
                         put(x, naam[x] ?: "De value is null")
                     }
                 }
@@ -127,11 +150,20 @@ class DatabaseHelper(context: Context) :
             tableName, null, values
         )
     }
-    fun getId(tableName: String, recordId: Int?, cowId: String): MutableList<Map<String, String>>{
-        val tables = arrayOf("cows","users","treatments","cowTreatments","notifications","roles","history")
+
+    fun getId(tableName: String, recordId: Int?, cowId: String): MutableList<Map<String, String>> {
+        val tables = arrayOf(
+            "cows",
+            "users",
+            "treatments",
+            "cowTreatments",
+            "notifications",
+            "roles",
+            "history"
+        )
 
         val hasTable = tables.contains(tableName)
-        if (!hasTable){
+        if (!hasTable) {
             Log.d("DB", "The database table doesn't exist")
         }
 
@@ -163,12 +195,21 @@ class DatabaseHelper(context: Context) :
         return info
 
     }
+
     fun haalNamenOp(tableName: String, fields: List<String>): MutableList<Map<String, String>> {
 
-        val tables = arrayOf("cows","users","treatments","cowTreatments","notifications","roles","history")
+        val tables = arrayOf(
+            "cows",
+            "users",
+            "treatments",
+            "cowTreatments",
+            "notifications",
+            "roles",
+            "history"
+        )
 
         val hasTable = tables.contains(tableName)
-        if (!hasTable){
+        if (!hasTable) {
             Log.d("DB", "The database table doesn't exist")
         }
 
@@ -200,22 +241,72 @@ class DatabaseHelper(context: Context) :
         return info
     }
 
-    fun delethe(tableName: String, recordId: Int?, cowID: String){
-        val tables = arrayOf("cows","users","treatments","cowTreatments","notifications","roles","history")
+    fun delethe(tableName: String, recordId: Int?, cowID: String) {
+        val tables = arrayOf(
+            "cows",
+            "users",
+            "treatments",
+            "cowTreatments",
+            "notifications",
+            "roles",
+            "history"
+        )
 
         val hasTable = tables.contains(tableName)
-        if (!hasTable){
+        if (!hasTable) {
             Log.d("DB", "The database table doesn't exist")
         }
 
-        Log.d("db","${tableName.toString()}")
-        Log.d("db","${recordId.toString()}")
-        Log.d("db","${cowID.toString()}")
+        Log.d("db", "${tableName.toString()}")
+        Log.d("db", "${recordId.toString()}")
+        Log.d("db", "${cowID.toString()}")
 
         val cursor = readableDatabase.execSQL(
             "DELETE FROM $tableName WHERE $cowID = $recordId",
 
+            )
+
+    }
+
+    fun getIdLog(tableName: String, recordId: String, cowId: String): MutableList<Map<String, String>> {
+        val tables = arrayOf(
+            "cows",
+            "users",
+            "treatments",
+            "cowTreatments",
+            "notifications",
+            "roles",
+            "history"
         )
 
+        val hasTable = tables.contains(tableName)
+        if (!hasTable) {
+            Log.d("DB", "The database table doesn't exist")
+        }
+
+
+        val cursor = readableDatabase.rawQuery(
+            "SELECT * FROM $tableName WHERE $cowId = '$recordId'",
+            null
+        )
+
+        val info = mutableListOf<Map<String, String>>()
+
+        cursor.use {
+            while (it.moveToNext()) {
+
+                val row = mutableMapOf<String, String>()
+
+                for (i in 0 until it.columnCount) {
+                    val columnName = it.getColumnName(i)
+                    val value = it.getString(i) ?: ""
+
+                    row[columnName] = value
+                }
+
+                info.add(row)
+            }
+        }
+        return info
     }
 }

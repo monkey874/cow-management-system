@@ -30,11 +30,12 @@ class userDetails : AppCompatActivity() {
 
             val info = dbHelper.getId("users", cowId?.toIntOrNull() ?: 0, "userId" )
 
-            val Desc = findViewById<TextView>(R.id.desc)
-            val title = findViewById<TextView>(R.id.title)
+            val userName = findViewById<TextView>(R.id.gebruikersnaam)
+            val role = findViewById<TextView>(R.id.role)
+            val status = findViewById<TextView>(R.id.status)
 
-            val cowDesc = findViewById<TextView>(R.id.textOmschrijving)
-            val cowTitle = findViewById<TextView>(R.id.titleOmschrijving)
+            val title = findViewById<TextView>(R.id.title)
+            val desc = findViewById<TextView>(R.id.desc)
 
             Log.d("123", "$info")
 
@@ -42,11 +43,13 @@ class userDetails : AppCompatActivity() {
             if (info.isNotEmpty()) {
 
 
-                title.text = "Gebruiker: "
-                Desc.text = "De informatie van gebruiker word hier weegegeven."
+                title.text = "Gebruiker: ${cow["userName"]}"
+                desc.text = "De informatie van gebruiker ${cow["userName"]} word hier weegegeven."
 
-                cowTitle.text = ""
-                cowDesc.text = "hallo"
+                userName.text = cow["userName"]
+                role.text = cow["roleId"]
+                status.text = cow["active"]
+
 
             }
 

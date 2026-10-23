@@ -52,7 +52,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editTextDate6"
+                android:id="@+id/gebruikersnaam"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginBottom="12dp"
@@ -76,7 +76,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editTextDate4"
+                android:id="@+id/wachtwoord"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginBottom="12dp"
