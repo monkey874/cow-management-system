@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">cowManagementSystem</string>
+    <string name="goBack"><![CDATA[<]]></string>
 </resources>

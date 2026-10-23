@@ -13,9 +13,10 @@ import android.widget.Button
 import android.widget.RadioGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateMapOf
+import com.example.cowmanagementsystem.BaseActivity
 import com.example.cowmanagementsystem.DatabaseHelper
 
-class addCow : AppCompatActivity() {
+class addCow : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,6 +27,7 @@ class addCow : AppCompatActivity() {
             insets
         }
         GetAllInfo()
+        setupBackButton()
 
 
     }
