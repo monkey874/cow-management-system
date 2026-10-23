@@ -37,7 +37,7 @@ class add_notifications : AppCompatActivity() {
                 "title" to nameNotifications.text.toString(),
                 "description" to desNotifications.text.toString(),
                 "cowId" to "1",
-                "userId" to "1",
+                "userId" to login.UserID.toString(),
                 "createdOn" to "1",
                 "processed" to "0"
               

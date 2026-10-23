@@ -11,7 +11,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.core.content.ContextCompat.startActivity
 
 class DatabaseHelper(context: Context) :
-    SQLiteOpenHelper(context, "namen.db", null, 6) {
+    SQLiteOpenHelper(context, "namen.db", null, 8) {
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
@@ -56,7 +56,8 @@ class DatabaseHelper(context: Context) :
                 cowId TEXT NOT NULL,
                 userId TEXT NOT NULL,
                 createdOn TEXT NOT NULL,
-                processed TEXT NOT NULL
+                processed TEXT NOT NULL,
+                FOREIGN KEY (userId) REFERENCES users(userId)
                 
             )
             """.trimIndent()
@@ -82,6 +83,8 @@ class DatabaseHelper(context: Context) :
         db.execSQL("DROP TABLE IF EXISTS namen")
         db.execSQL("DROP TABLE IF EXISTS cows")
         db.execSQL("DROP TABLE IF EXISTS notifications")
+        db.execSQL("DROP TABLE IF EXISTS treatments")
+
         onCreate(db)
     }
 
