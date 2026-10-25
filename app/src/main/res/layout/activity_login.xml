@@ -82,7 +82,7 @@
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/bg_input"
                 android:hint="Wachtwoord"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
                 android:singleLine="true"
