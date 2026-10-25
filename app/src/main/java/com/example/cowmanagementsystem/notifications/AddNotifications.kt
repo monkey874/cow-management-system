@@ -8,11 +8,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.cowmanagementsystem.functies.BaseActivity
-import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
-import com.example.cowmanagementsystem.cows.ShowAllCows
+import com.example.cowmanagementsystem.database.DatabaseHelper
+import com.example.cowmanagementsystem.functies.BaseActivity
+import com.example.cowmanagementsystem.functies.generateList
 import com.example.cowmanagementsystem.login.Login
+
 
 class AddNotifications : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,15 +27,33 @@ class AddNotifications : BaseActivity() {
         }
         getAllInfo()
         setupBackButton()
+        prepareDropdown()
 
     }
 
-    fun getAllInfo(){
+    fun prepareDropdown(){
+        val needValues = listOf("cowID", "cowNumber")
 
+        val dbHelper = DatabaseHelper(this)
+        val cowDataItems = dbHelper.getItems("cows", needValues)
+
+        val cowIds = mutableListOf<String>()
+        val cowNumbers = mutableListOf<String>()
+
+        for (cowData in cowDataItems) {
+            cowData["cowID"]?.let { cowIds.add(it) }
+            cowData["cowNumber"]?.let { cowNumbers.add(it) }
+        }
+
+        val def = generateList(this)
+        def.vulKoeienDropdown(cowNumbers)
+
+    }
+    fun getAllInfo(){
         val saveButton = findViewById<Button>(R.id.button)
         saveButton.setOnClickListener {
 
-            // all text field placeholder
+            // all text field & simmers and a placeholder
             val nameNotificationPlaceholder = findViewById<EditText>(R.id.editTextDate6)
             val descriptionNotificationPlaceholder = findViewById<EditText>(R.id.editTextDate4)
 
