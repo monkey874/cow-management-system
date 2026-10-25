@@ -1,5 +1,6 @@
 package com.example.cowmanagementsystem.cows
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -62,6 +63,9 @@ class AddCow : BaseActivity() {
                 "color" to valueColorText,
             )
             dbHelper.addItem(cowInfo, "cows")
+
+            val intent = Intent(this, ShowAllCows::class.java)
+            startActivity(intent)
         }
 
     }

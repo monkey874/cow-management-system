@@ -1,5 +1,6 @@
 package com.example.cowmanagementsystem.notifications
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -10,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
+import com.example.cowmanagementsystem.cows.ShowAllCows
 import com.example.cowmanagementsystem.login.Login
 
 class AddNotifications : BaseActivity() {
@@ -51,6 +53,9 @@ class AddNotifications : BaseActivity() {
                 "processed" to "0"
             )
             dbHelper.addItem(notificationInfo, "notifications")
+
+            val intent = Intent(this, ShowAllNotifications::class.java)
+            startActivity(intent)
         }
 
     }

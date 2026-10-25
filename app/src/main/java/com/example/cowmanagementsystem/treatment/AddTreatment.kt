@@ -1,5 +1,6 @@
 package com.example.cowmanagementsystem.treatment
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -10,6 +11,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
+import com.example.cowmanagementsystem.cows.ShowAllCows
+import com.example.cowmanagementsystem.dasboard.ActivityDashboard
 
 class AddTreatment : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +47,9 @@ class AddTreatment : BaseActivity() {
                 "treatmentDescription" to treatmentDescriptionText,
             )
             dbHelper.addItem(treatmentInfo, "treatments")
+
+            val intent = Intent(this, ActivityDashboard::class.java)
+            startActivity(intent)
         }
 
     }

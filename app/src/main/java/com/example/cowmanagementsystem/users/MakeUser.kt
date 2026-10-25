@@ -1,5 +1,6 @@
 package com.example.cowmanagementsystem.users
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.RadioButton
@@ -12,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
+import com.example.cowmanagementsystem.cows.ShowAllCows
 
 class MakeUser : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +53,9 @@ class MakeUser : BaseActivity() {
                 "active" to valueStaus,
             )
             dbHelper.addItem(data, "users")
+
+            val intent = Intent(this, ShowAllUsers::class.java)
+            startActivity(intent)
         }
     }
 }
