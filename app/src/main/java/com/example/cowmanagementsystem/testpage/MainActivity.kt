@@ -24,7 +24,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import android.content.Intent
-import com.example.cowmanagementsystem.ui.theme.addCow
+import com.example.cowmanagementsystem.cows.ActivityCowDetails
+import com.example.cowmanagementsystem.cows.AddCow
+import com.example.cowmanagementsystem.cows.ShowAllCows
+import com.example.cowmanagementsystem.database.DatabaseHelper
+import com.example.cowmanagementsystem.login.Login
+import com.example.cowmanagementsystem.notifications.AddNotifications
+import com.example.cowmanagementsystem.notifications.ShowAllNotifications
+import com.example.cowmanagementsystem.treatment.AddTreatment
+import com.example.cowmanagementsystem.users.MakeUser
+import com.example.cowmanagementsystem.users.ShowAllUsers
+import com.example.cowmanagementsystem.users.UserDetails
 import kotlin.jvm.java
 
 class MainActivity : ComponentActivity() {
@@ -123,7 +133,7 @@ fun GenerateInputs(
             onClick = {
                 val intent = Intent(
                     context,
-                    addCow::class.java
+                    AddCow::class.java
                 )
                 context.startActivity(intent)
             }
@@ -136,7 +146,7 @@ fun GenerateInputs(
             onClick = {
                 val intent = Intent(
                     context,
-                    add_notifications::class.java
+                    AddNotifications::class.java
                 )
                 context.startActivity(intent)
             }
@@ -147,7 +157,7 @@ fun GenerateInputs(
             onClick = {
                 val intent = Intent(
                     context,
-                    addTreatment::class.java
+                    AddTreatment::class.java
                 )
                 context.startActivity(intent)
             }
@@ -171,7 +181,7 @@ fun GenerateInputs(
             onClick = {
                 val intent = Intent(
                     context,
-                    showAllNotifications::class.java
+                    ShowAllNotifications::class.java
                 )
                 context.startActivity(intent)
             }
@@ -183,7 +193,7 @@ fun GenerateInputs(
             onClick = {
                 val intent = Intent(
                     context,
-                    activity_cow_details::class.java
+                    ActivityCowDetails::class.java
                 )
                 context.startActivity(intent)
             }
@@ -194,18 +204,18 @@ fun GenerateInputs(
             onClick = {
                 val intent = Intent(
                     context,
-                    login::class.java
+                    Login::class.java
                 )
                 context.startActivity(intent)
             }
         ) {
-            Text("login")
+            Text("com/example/cowmanagementsystem/loginPage")
         }
         Button(
             onClick = {
                 val intent = Intent(
                     context,
-                    makeUser::class.java
+                    MakeUser::class.java
                 )
                 context.startActivity(intent)
             }
@@ -216,7 +226,7 @@ fun GenerateInputs(
             onClick = {
                 val intent = Intent(
                     context,
-                    showAllUsers::class.java
+                    ShowAllUsers::class.java
                 )
                 context.startActivity(intent)
             }
@@ -227,7 +237,7 @@ fun GenerateInputs(
             onClick = {
                 val intent = Intent(
                     context,
-                    userDetails::class.java
+                    UserDetails::class.java
                 )
                 context.startActivity(intent)
             }
@@ -262,7 +272,7 @@ fun GenerateButton(resourcesField: SnapshotStateMap<String, String>, name: Strin
                   Log.d("value:", "$value: ")
 
               }
-              database.voegNaamToe(resourcesField, "users" )
+              database.addItem(resourcesField, "com/example/cowmanagementsystem/users" )
             } ) {
             Text(
                 name

@@ -1,21 +1,27 @@
-package com.example.cowmanagementsystem
+package com.example.cowmanagementsystem.cows
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.toColorInt
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.cowmanagementsystem.functies.BaseActivity
+import com.example.cowmanagementsystem.database.DatabaseHelper
+import com.example.cowmanagementsystem.R
 
-class showAllNotifications : BaseActivity() {
+class ShowAllCows : BaseActivity() {
+    companion object{
+        var cowId: Int = 0
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_show_all_notifications)
+        setContentView(R.layout.activity_show_all_cows)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -23,17 +29,18 @@ class showAllNotifications : BaseActivity() {
         }
         showAll()
         setupBackButton()
+
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
     fun showAll(){
         val container = findViewById<LinearLayout>(R.id.linarLayoud)
 
         val dbHelper = DatabaseHelper(this)
-        val needvalues = listOf("notificationId", "title")
-        val info = dbHelper.haalNamenOp("notifications", needvalues)
+        val needValues = listOf("cowID", "cowNumber")
+        val cowInfo = dbHelper.getItems("cows", needValues)
 
-        for (cow in info) {
-
+        for (cow in cowInfo) {
             val cowLayout = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL
                 setPadding(16, 16, 16, 16)
@@ -41,39 +48,34 @@ class showAllNotifications : BaseActivity() {
 
             }
 
-
-            val context = this
             cowLayout.setOnClickListener {
-
-                val intent = Intent(
-                    this,
-                    notificationDetails::class.java
-                )
+                val intent = Intent(this, ActivityCowDetails::class.java)
 
                 intent.putExtra(
-                    "notificationId",
-                    cow["notificationId"].toString()
+                    "cowId",
+                    cow["cowID"].toString()
                 )
+                cowId = cow["cowID"]?.toIntOrNull() ?: 0
 
                 startActivity(intent)
             }
 
-            val textView = TextView(this).apply {
+                val textView = TextView(this).apply {
 
-                text = "${cow["title"] ?: ""}"
-                textSize = 16f
+                    text = ("Koe " + cow["cowNumber"])
+                    textSize = 16f
 
-                setTextColor(android.graphics.Color.parseColor("#263238"))
-                gravity = Gravity.CENTER_VERTICAL
+                    setTextColor("#263238".toColorInt())
+                    gravity = Gravity.CENTER_VERTICAL
 
-                val params = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    56.dpToPx()
-                )
-                layoutParams = params
-            }
+                    val params = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        56.dpToPx()
+                    )
+                    layoutParams = params
+                }
 
-            cowLayout.addView(textView)
+                cowLayout.addView(textView)
 
 
             val cowParams = LinearLayout.LayoutParams(

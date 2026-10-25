@@ -1,17 +1,20 @@
-package com.example.cowmanagementsystem
+package com.example.cowmanagementsystem.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.mutableStateMapOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.cowmanagementsystem.database.DatabaseHelper
+import com.example.cowmanagementsystem.R
+import com.example.cowmanagementsystem.dasboard.ActivityDashboard
 import org.mindrot.jbcrypt.BCrypt
 
-class login : AppCompatActivity() {
+class Login : AppCompatActivity() {
     companion object{
         var UserID: Int = 0
     }
@@ -25,24 +28,34 @@ class login : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        test()
+        getAllInfo()
     }
 
-    fun test(){
+    fun getAllInfo() {
+
+
         val userNameInput = findViewById<EditText>(R.id.gebruikersnaam)
         val userPasswordInput = findViewById<EditText>(R.id.wachtwoord)
         val subButton = findViewById<Button>(R.id.button)
 
         subButton.setOnClickListener {
-            val dbHelper = DatabaseHelper(this)
-            val info = dbHelper.getIdLog("users", userNameInput.text.toString(), "userName")
-            val firstobject = info[0]
 
-            val validateUser = BCrypt.checkpw(userPasswordInput.text.toString(),firstobject["password"].toString())
-            if (validateUser){
-                Log.d("Is validate:", validateUser.toString())
+            val dbHelper = DatabaseHelper(this)
+            val loginDataList = dbHelper.getIdLog("users",userNameInput.text.toString(), "userName")
+            val login = loginDataList[0]
+
+
+            val validateUser = BCrypt.checkpw(userPasswordInput.text.toString(), login["password"].toString())
+
+            if (validateUser) {
+                Log.d("Is validate:", true.toString())
+
+                    val intent = Intent(this, ActivityDashboard::class.java)
+                    startActivity(intent)
+
             }
-            UserID = firstobject["userId"]?.toIntOrNull() ?: 0
+
+            UserID = login["userId"]?.toIntOrNull() ?: 0
             Log.d("UserID", UserID.toString())
         }
     }

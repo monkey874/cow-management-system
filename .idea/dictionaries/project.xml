@@ -2,8 +2,19 @@
   <dictionary name="project">
     <words>
       <w>Gebruikersnaam</w>
+      <w>Geslacht</w>
+      <w>Kleur</w>
+      <w>Oormerknummer</w>
       <w>Wachtwoord</w>
       <w>custum</w>
+      <w>geboortedatum</w>
+      <w>gebruiker</w>
+      <w>geen</w>
+      <w>gegevens</w>
+      <w>hier</w>
+      <w>informatie</w>
+      <w>vinden</w>
+      <w>weegegeven</w>
     </words>
   </dictionary>
 </component>

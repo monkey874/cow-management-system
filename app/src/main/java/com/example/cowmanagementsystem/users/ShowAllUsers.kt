@@ -1,48 +1,41 @@
+package com.example.cowmanagementsystem.users
 
-package com.example.cowmanagementsystem
-
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.toColorInt
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.cowmanagementsystem.functies.BaseActivity
+import com.example.cowmanagementsystem.database.DatabaseHelper
+import com.example.cowmanagementsystem.R
 
-class ShowAllCows : BaseActivity() {
-    companion object{
-        var cowId: Int = 0
-    }
+class ShowAllUsers : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_show_all_cows)
+        setContentView(R.layout.activity_show_all_users)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        ShowAll()
+        showAll()
         setupBackButton()
-
-
-
     }
-
-
-
-
-    fun ShowAll(){
+    @SuppressLint("UseCompatLoadingForDrawables")
+    fun showAll(){
         val container = findViewById<LinearLayout>(R.id.linarLayoud)
 
         val dbHelper = DatabaseHelper(this)
-        val needvalues = listOf("cowID", "cowNumber")
-        val info = dbHelper.haalNamenOp("cows", needvalues)
+        val needValues = listOf("userId", "userName")
+        val userInfo = dbHelper.getItems("users", needValues)
 
-        for (cow in info) {
+        for (user in userInfo) {
 
             val cowLayout = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL
@@ -50,39 +43,35 @@ class ShowAllCows : BaseActivity() {
                 background = getDrawable(R.drawable.bg_option_group)
 
             }
-            val context = this
+
             cowLayout.setOnClickListener {
 
-                val intent = Intent(
-                    this,
-                    activity_cow_details::class.java
-                )
+                val intent = Intent(this, UserDetails::class.java)
 
                 intent.putExtra(
-                    "cowId",
-                    cow["cowID"].toString()
+                    "userId",
+                    user["userId"].toString()
                 )
-                cowId = cow["cowID"]?.toIntOrNull() ?: 0
 
                 startActivity(intent)
             }
 
-                val textView = TextView(this).apply {
+            val textView = TextView(this).apply {
 
-                    text = "Koe ${cow["cowNumber"] ?: ""}"
-                    textSize = 16f
+                text = (user["userName"])
+                textSize = 16f
 
-                    setTextColor(android.graphics.Color.parseColor("#263238"))
-                    gravity = Gravity.CENTER_VERTICAL
+                setTextColor("#263238".toColorInt())
+                gravity = Gravity.CENTER_VERTICAL
 
-                    val params = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        56.dpToPx()
-                    )
-                    layoutParams = params
-                }
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    56.dpToPx()
+                )
+                layoutParams = params
+            }
 
-                cowLayout.addView(textView)
+            cowLayout.addView(textView)
 
 
             val cowParams = LinearLayout.LayoutParams(

@@ -1,27 +1,18 @@
-package com.example.cowmanagementsystem
+package com.example.cowmanagementsystem.database
 
 import android.content.ContentValues
 import android.content.Context
-import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import org.mindrot.jbcrypt.BCrypt
 import androidx.compose.runtime.snapshots.SnapshotStateMap
-import androidx.core.content.ContextCompat.startActivity
 
 class DatabaseHelper(context: Context) :
-    SQLiteOpenHelper(context, "namen.db", null, 11) {
+    SQLiteOpenHelper(context, "cowManagementSystem.db", null, 13) {
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL(
-            """
-            CREATE TABLE namen (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                naam TEXT NOT NULL
-            )
-            """.trimIndent()
-        )
+
         db.execSQL(
             """
             CREATE TABLE users (
@@ -77,7 +68,7 @@ class DatabaseHelper(context: Context) :
             CREATE TABLE cowTreatments (
                 cowTreatmentId INTEGER PRIMARY KEY AUTOINCREMENT,
                 treatmentId TEXT NOT NULL,
-                extratreatmentDescription TEXT NOT NULL,
+                extraTreatmentDescription TEXT NOT NULL,
                 cowId TEXT NOT NULL,
                 userID TEXT NOT NULL,
                 doneOn TEXT NOT NULL,
@@ -98,7 +89,6 @@ class DatabaseHelper(context: Context) :
         newVersion: Int
     ) {
         db.execSQL("DROP TABLE IF EXISTS users")
-        db.execSQL("DROP TABLE IF EXISTS namen")
         db.execSQL("DROP TABLE IF EXISTS cows")
         db.execSQL("DROP TABLE IF EXISTS notifications")
         db.execSQL("DROP TABLE IF EXISTS treatments")
@@ -107,7 +97,7 @@ class DatabaseHelper(context: Context) :
         onCreate(db)
     }
 
-    fun voegNaamToe(naam: SnapshotStateMap<String, String>, tableName: String) {
+    fun addItem(naam: SnapshotStateMap<String, String>, tableName: String) {
         val tables = arrayOf(
             "cows",
             "users",
@@ -124,7 +114,7 @@ class DatabaseHelper(context: Context) :
             "cowTreatments" to listOf(
                 "cowTreatmentId",
                 "treatmentId",
-                "extratreatmentDescription",
+                "extraTreatmentDescription",
                 "cowId",
                 "userID",
                 "doneOn"
@@ -218,7 +208,7 @@ class DatabaseHelper(context: Context) :
 
     }
 
-    fun haalNamenOp(tableName: String, fields: List<String>): MutableList<Map<String, String>> {
+    fun getItems(tableName: String, fields: List<String>): MutableList<Map<String, String>> {
 
         val tables = arrayOf(
             "cows",
@@ -263,7 +253,7 @@ class DatabaseHelper(context: Context) :
         return info
     }
 
-    fun delethe(tableName: String, recordId: Int?, cowID: String) {
+    fun delete(tableName: String, recordId: Int?, cowID: String) {
         val tables = arrayOf(
             "cows",
             "users",
@@ -293,7 +283,7 @@ class DatabaseHelper(context: Context) :
     fun getIdLog(tableName: String, recordId: String, cowId: String): MutableList<Map<String, String>> {
         val tables = arrayOf(
             "cows",
-            "users",
+            "/users",
             "treatments",
             "cowTreatments",
             "notifications",

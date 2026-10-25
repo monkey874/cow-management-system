@@ -12,11 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CowManagementSystem">
         <activity
-            android:name=".MainActivity"
+            android:name=".login.Login"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.CowManagementSystem"
             android:windowSoftInputMode="adjustResize">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,55 +25,51 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.theme.addCow"
+            android:name=".cows.AddCow"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ShowAllCows"
+            android:name=".cows.ShowAllCows"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".add_notifications"
+            android:name=".notifications.AddNotifications"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".addTreatment"
+            android:name=".treatment.AddTreatment"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".showAllNotifications"
+            android:name=".notifications.ShowAllNotifications"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activity_cow_details"
+            android:name=".cows.ActivityCowDetails"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".notificationDetails"
+            android:name=".notifications.NotificationDetails"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".login"
+            android:name=".users.MakeUser"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".makeUser"
+            android:name=".users.ShowAllUsers"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".showAllUsers"
+            android:name=".users.UserDetails"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".userDetails"
+            android:name=".treatment.AddOwnTreatment"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".addOwnTreatment"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".activity_dashboard"
+            android:name=".dasboard.ActivityDashboard"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

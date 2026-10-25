@@ -1,9 +1,9 @@
-
-package com.example.cowmanagementsystem
+package com.example.cowmanagementsystem.functies
 
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cowmanagementsystem.R
 
 open class BaseActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.example.cowmanagementsystem
+package com.example.cowmanagementsystem.treatment
 
 import android.os.Bundle
 import android.widget.Button
@@ -7,9 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.util.Date
+import com.example.cowmanagementsystem.database.DatabaseHelper
+import com.example.cowmanagementsystem.R
+import com.example.cowmanagementsystem.cows.ShowAllCows
+import com.example.cowmanagementsystem.login.Login
 
-class addOwnTreatment : AppCompatActivity() {
+class AddOwnTreatment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -19,22 +22,24 @@ class addOwnTreatment : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        test()
+        getAllInfo()
     }
-    fun test(){
+    fun getAllInfo(){
+        // all text field placeholder and groups and buttons
         val subBtn = findViewById<Button>(R.id.button)
 
+        // all treatmentInfo in a mutableStateMapOf and push everything to the database
         subBtn.setOnClickListener {
-            val data = mutableStateMapOf(
+            val treatmentInfo = mutableStateMapOf(
                 "treatmentId" to "1",
-                "extratreatmentDescription" to "e",
+                "extraTreatmentDescription" to "e",
                 "cowId" to ShowAllCows.cowId.toString(),
-                "userID" to login.UserID.toString(),
+                "userID" to Login.UserID.toString(),
                 "doneOn" to ""
 
             )
             val dbHelper = DatabaseHelper(this)
-            dbHelper.voegNaamToe(data, "cowTreatments")
+            dbHelper.addItem(treatmentInfo, "cowTreatments")
         }
     }
 }
