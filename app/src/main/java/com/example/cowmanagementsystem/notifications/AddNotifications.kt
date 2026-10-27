@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.core.view.ViewCompat
@@ -50,23 +51,27 @@ class AddNotifications : BaseActivity() {
 
     }
     fun getAllInfo(){
+        val dbHelper = DatabaseHelper(this)
         val saveButton = findViewById<Button>(R.id.button)
         saveButton.setOnClickListener {
 
             // all text field & simmers and a placeholder
             val nameNotificationPlaceholder = findViewById<EditText>(R.id.editTextDate6)
             val descriptionNotificationPlaceholder = findViewById<EditText>(R.id.editTextDate4)
+            val spinnerPlaceholder = findViewById<Spinner>(R.id.spinnerCows)
 
             // all the values of the placeholders
             val nameNotificationText = nameNotificationPlaceholder.text.toString()
             val descriptionNotificationText = descriptionNotificationPlaceholder.text.toString()
+            val selectedCowText = spinnerPlaceholder.selectedItem.toString()
+            val cowInfo = dbHelper.getString("cows",selectedCowText,"cowNumber")
+            val cowId = cowInfo[0]["cowID"].toString()
 
             // all notificationInfo in a mutableStateMapOf and push everything to the database
-            val dbHelper = DatabaseHelper(this)
             val notificationInfo = mutableStateMapOf(
                 "title" to nameNotificationText,
                 "description" to descriptionNotificationText,
-                "cowId" to "1",
+                "cowId" to cowId,
                 "userId" to Login.UserID.toString(),
                 "createdOn" to "1",
                 "processed" to "0"

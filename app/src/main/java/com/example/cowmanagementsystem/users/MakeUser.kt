@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.mutableStateMapOf
@@ -14,6 +15,7 @@ import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.cows.ShowAllCows
+import com.example.cowmanagementsystem.functies.generateList
 
 class MakeUser : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,12 +29,30 @@ class MakeUser : BaseActivity() {
         }
         getAllInfo()
         setupBackButton()
+        prepareDropdown()
     }
+    fun prepareDropdown(){
+        val needValues = listOf("roleId", "roleName")
 
+        val dbHelper = DatabaseHelper(this)
+        val cowDataItems = dbHelper.getItems("roles", needValues)
+
+        val cowIds = mutableListOf<String>()
+        val cowNumbers = mutableListOf<String>()
+
+        for (cowData in cowDataItems) {
+            cowData["roleId"]?.let { cowIds.add(it) }
+            cowData["roleName"]?.let { cowNumbers.add(it) }
+        }
+
+        val def = generateList(this)
+        def.vulrolesDropdown(cowNumbers)
+
+    }
     fun getAllInfo(){
         val makeButton = findViewById<Button>(R.id.button)
         makeButton.setOnClickListener {
-
+            val dbHelper = DatabaseHelper(this)
             // all text field placeholder and groups
             val userNamePlaceholder = findViewById<TextView>(R.id.editTextDate6)
             val passwordPlaceholder = findViewById<TextView>(R.id.editTextDate4)
@@ -41,15 +61,20 @@ class MakeUser : BaseActivity() {
             val userNameText = userNamePlaceholder.text.toString()
             val passwordText = passwordPlaceholder.text.toString()
 
+            val spinnerPlaceholder = findViewById<Spinner>(R.id.spinnerRoles)
+
+            val selectedCowText = spinnerPlaceholder.selectedItem.toString()
+            val cowInfo = dbHelper.getString("roles",selectedCowText,"roleName")
+            val cowId = cowInfo[0]["roleId"].toString()
+
             val status = statusGroup.checkedRadioButtonId
             val valueStaus = findViewById<RadioButton>(status).text.toString()
 
             // all cowInfo in a mutableStateMapOf and push everything to the database
-            val dbHelper = DatabaseHelper(this)
             val data = mutableStateMapOf(
                 "userName" to userNameText,
                 "password" to passwordText,
-                "roleId" to "null",
+                "roleId" to cowId,
                 "active" to valueStaus,
             )
             dbHelper.addItem(data, "users")
