@@ -11,6 +11,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
+import com.example.cowmanagementsystem.cows.ShowAllCows.Companion.cowId
+import kotlin.text.toIntOrNull
 
 class UserDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +43,7 @@ class UserDetails : AppCompatActivity() {
             val userTitleExtra = findViewById<TextView>(R.id.title)
             val userDescriptionExtra = findViewById<TextView>(R.id.desc)
             val deleteBtn = findViewById<Button>(R.id.button1)
+            val update = findViewById<Button>(R.id.button2)
 
 
             if (userDataList.isNotEmpty()) {
@@ -60,6 +63,15 @@ class UserDetails : AppCompatActivity() {
             deleteBtn.setOnClickListener {
                 delete()
                 val intent = Intent(this, ShowAllUsers::class.java)
+                startActivity(intent)
+            }
+
+            update.setOnClickListener {
+                val intent = Intent(this, editUser::class.java)
+                intent.putExtra(
+                    "userId",
+                    userId
+                )
                 startActivity(intent)
             }
 

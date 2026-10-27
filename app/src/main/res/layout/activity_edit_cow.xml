@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F7F8"
+    tools:context=".ui.theme.addCow">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="28dp">
+
+            <!-- Header: back-knop links, tekst rechts -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+
+                <Button
+                    android:id="@+id/btnBack"
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@string/goBack"
+                    android:textColor="#176B78"
+                    android:textSize="22sp"
+                    android:backgroundTint="#E0F2F1" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Koe updaten"
+                        android:textColor="#176B78"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:gravity="" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Vul de gegevens van de koe in"
+                        android:textColor="#78909C"
+                        android:textSize="12sp"
+                        android:gravity=""
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- Algemene gegevens -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Algemene gegevens"
+                android:textColor="#176B78"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/editTextDate6"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_input"
+                android:hint="Koenummer"
+                android:inputType="text"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:textColor="#263238"
+                android:textColorHint="#78909C"
+                android:textSize="16sp"
+                android:singleLine="true"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/editTextDate4"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_input"
+                android:hint="Oormerknummer"
+                android:inputType="text"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:textColor="#263238"
+                android:textColorHint="#78909C"
+                android:textSize="16sp"
+                android:singleLine="true"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/editTextDate3"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_input"
+                android:hint="Geboortedatum"
+                android:inputType="date"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:textColor="#263238"
+                android:textColorHint="#78909C"
+                android:textSize="16sp"
+                android:singleLine="true"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Geslacht -->
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Geslacht"
+                android:textColor="#176B78"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp" />
+
+            <RadioGroup
+                android:id="@+id/genderGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:background="@drawable/bg_option_group"
+                android:layout_marginBottom="24dp">
+
+                <RadioButton
+                    android:id="@+id/radioButton11"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:buttonTint="#009688"
+                    android:paddingStart="8dp"
+                    android:text="Mannelijk"
+                    android:textColor="#263238"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton10"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:buttonTint="#009688"
+                    android:paddingStart="8dp"
+                    android:text="Vrouwelijk"
+                    android:textColor="#263238"
+                    android:textSize="15sp" />
+
+            </RadioGroup>
+
+            <!-- Kleur -->
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kleur van de koe"
+                android:textColor="#176B78"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp" />
+
+            <RadioGroup
+                android:id="@+id/colorGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:background="@drawable/bg_option_group"
+                android:layout_marginBottom="24dp">
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:buttonTint="#009688"
+                    android:paddingStart="8dp"
+                    android:text="Rood-wit"
+                    android:textColor="#263238"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton9"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:buttonTint="#009688"
+                    android:paddingStart="8dp"
+                    android:text="Effen rood"
+                    android:textColor="#263238"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton5"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:buttonTint="#009688"
+                    android:paddingStart="8dp"
+                    android:text="Zwart-wit"
+                    android:textColor="#263238"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton7"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:buttonTint="#009688"
+                    android:paddingStart="8dp"
+                    android:text="Effen zwart"
+                    android:textColor="#263238"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton8"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:buttonTint="#009688"
+                    android:paddingStart="8dp"
+                    android:text="Effen bruin"
+                    android:textColor="#263238"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton6"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:buttonTint="#009688"
+                    android:paddingStart="8dp"
+                    android:text="Bruin-wit"
+                    android:textColor="#263238"
+                    android:textSize="15sp" />
+
+            </RadioGroup>
+
+            <!-- Opslaan -->
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:backgroundTint="#009688"
+                android:text="Koe updaten"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

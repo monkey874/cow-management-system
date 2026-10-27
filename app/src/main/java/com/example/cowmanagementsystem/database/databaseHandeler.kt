@@ -182,6 +182,106 @@ class DatabaseHelper(context: Context) :
         addItemHistory(historyInfo, "history")
     }
     @RequiresApi(Build.VERSION_CODES.O)
+    fun UpdateItem(
+        naam: SnapshotStateMap<String, String>,
+        tableName: String,
+        recordId: String
+    ): Boolean {
+
+        // Toegestane tabellen met hun primaire sleutel
+        val primaryKeys = mapOf(
+            "cows" to "cowID",
+            "users" to "userId",
+            "treatments" to "treatmentId",
+            "cowTreatments" to "cowTreatmentId",
+            "notifications" to "notificationId",
+            "roles" to "roleId",
+            "history" to "logId"
+        )
+
+        val primaryKey = primaryKeys[tableName]
+
+        // Controleer of de tabel bestaat
+        if (primaryKey == null) {
+            Log.e("DB", "Deze tabel bestaat niet: $tableName")
+            return false
+        }
+
+        // Kolommen per tabel
+        val columns = mapOf(
+            "cows" to listOf(
+                "cowNumber", "earTagNumber", "gender",
+                "color", "dayOfBirth"
+            ),
+            "users" to listOf(
+                "userName", "password", "roleId", "active"
+            ),
+            "treatments" to listOf(
+                "treatmentName", "treatmentDescription"
+            ),
+            "cowTreatments" to listOf(
+                "treatmentId", "extraTreatmentDescription",
+                "cowId", "userID", "doneOn"
+            ),
+            "notifications" to listOf(
+                "title", "description", "cowId",
+                "userId", "createdOn", "processed"
+            ),
+            "roles" to listOf("roleName"),
+            "history" to listOf(
+                "userId", "actions", "dbTable",
+                "recordId", "dateTime"
+            )
+        )
+
+        val tableColumns = columns[tableName] ?: return false
+
+        // Maak de waarden klaar voor de update
+        val values = ContentValues()
+
+        for (column in tableColumns) {
+            val value = naam[column] ?: continue
+
+            if (column == "password") {
+                // Hash het wachtwoord alleen als het gewijzigd wordt
+                if (value.isNotBlank()) {
+                    values.put(column, BCrypt.hashpw(value, BCrypt.gensalt()))
+                }
+            } else {
+                values.put(column, value)
+            }
+        }
+
+        if (values.size() == 0) {
+            Log.d("DB", "Geen waarden om bij te werken")
+            return false
+        }
+
+        val db = writableDatabase
+
+        return try {
+            val updatedRows = db.update(
+                tableName,
+                values,
+                "$primaryKey = ?",
+                arrayOf(recordId)
+            )
+
+            if (updatedRows > 0 && tableName != "history") {
+                History(
+                    dbTable = tableName,
+                    action = "bijgewerkt",
+                    recordId = recordId
+                )
+            }
+
+            updatedRows > 0
+        } catch (e: Exception) {
+            Log.e("DB", "Fout bij bijwerken van $tableName", e)
+            false
+        }
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
     fun addItem(naam: SnapshotStateMap<String, String>, tableName: String) {
         val tables = arrayOf(
             "cows",

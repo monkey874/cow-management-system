@@ -2,18 +2,22 @@ package com.example.cowmanagementsystem.cows
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.treatment.AddOwnTreatment
+import kotlin.text.toIntOrNull
 
 class ActivityCowDetails : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,6 +29,7 @@ class ActivityCowDetails : AppCompatActivity() {
         }
         getAllInfo()
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     fun getAllInfo(){
 
@@ -43,8 +48,10 @@ class ActivityCowDetails : AppCompatActivity() {
         val colorPlaceholder = findViewById<TextView>(R.id.textCowColor)
         val genderPlaceholder = findViewById<TextView>(R.id.textCowGender)
         val dayOfBurtPlaceholder = findViewById<TextView>(R.id.textCowBirthDate)
+
         val deleteButton = findViewById<Button>(R.id.button1)
         val treatmentButton = findViewById<Button>(R.id.button)
+        val editButton = findViewById<TextView>(R.id.buttonEditCow)
 
 
         // set all the values on the cowDetails page
@@ -76,9 +83,20 @@ class ActivityCowDetails : AppCompatActivity() {
             startActivity(intent)
         }
 
+        editButton.setOnClickListener{
+
+            val intent = Intent(this, editCow::class.java)
+            intent.putExtra(
+                "cowId",
+                cowId
+            )
+            startActivity(intent)
+        }
+
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun deleteNow() {
         val cowId = intent.getStringExtra("cowId")
 

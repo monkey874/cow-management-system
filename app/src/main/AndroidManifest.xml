@@ -17,7 +17,6 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.CowManagementSystem"
             android:windowSoftInputMode="adjustResize">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -70,6 +69,14 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".dasboard.ActivityDashboard"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".cows.editCow"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".users.editUser"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

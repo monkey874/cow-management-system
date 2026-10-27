@@ -1,6 +1,7 @@
 package com.example.cowmanagementsystem.users
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.RadioButton
@@ -8,6 +9,7 @@ import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -49,6 +51,7 @@ class MakeUser : BaseActivity() {
         def.vulrolesDropdown(cowNumbers)
 
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getAllInfo(){
         val makeButton = findViewById<Button>(R.id.button)
         makeButton.setOnClickListener {

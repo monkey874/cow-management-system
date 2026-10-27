@@ -1,12 +1,14 @@
 package com.example.cowmanagementsystem.cows
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -29,6 +31,7 @@ class AddCow : BaseActivity() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getAllInfo() {
 
         val saveButton = findViewById<Button>(R.id.button)
