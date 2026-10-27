@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.cows.AddCow
 import com.example.cowmanagementsystem.cows.ShowAllCows
+import com.example.cowmanagementsystem.history.History
 import com.example.cowmanagementsystem.notifications.AddNotifications
 import com.example.cowmanagementsystem.notifications.ShowAllNotifications
 import com.example.cowmanagementsystem.treatment.AddTreatment
@@ -63,7 +64,8 @@ class ActivityDashboard : AppCompatActivity() {
                     }
 
                     R.id.historyButton -> {
-
+                        val intent = Intent(this, History::class.java)
+                        startActivity(intent)
                     }
 
                     R.id.btnAddCow -> {

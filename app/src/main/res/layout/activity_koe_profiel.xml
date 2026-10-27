@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollKoeProfiel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F7F8"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Titel -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Koeprofiel"
+            android:textColor="#176B78"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alle gegevens en gebeurtenissen van deze koe"
+            android:textColor="#607D8B"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Koegegevens -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_option_group"
+            android:padding="16dp"
+            android:layout_marginBottom="18dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gegevens van de koe"
+                android:textColor="#176B78"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:id="@+id/textCowNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Koeiennummer: laden..."
+                android:textColor="#263238"
+                android:textSize="16sp"
+                android:paddingVertical="5dp" />
+
+            <TextView
+                android:id="@+id/textEarTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Oornummer: -"
+                android:textColor="#263238"
+                android:textSize="16sp"
+                android:paddingVertical="5dp" />
+
+            <TextView
+                android:id="@+id/textGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Geslacht: -"
+                android:textColor="#263238"
+                android:textSize="16sp"
+                android:paddingVertical="5dp" />
+
+            <TextView
+                android:id="@+id/textColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kleur: -"
+                android:textColor="#263238"
+                android:textSize="16sp"
+                android:paddingVertical="5dp" />
+
+            <TextView
+                android:id="@+id/textBirthDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Geboortedatum: -"
+                android:textColor="#263238"
+                android:textSize="16sp"
+                android:paddingVertical="5dp" />
+
+        </LinearLayout>
+
+        <!-- Meldingen -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Meldingen"
+            android:textColor="#176B78"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/textNotifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_option_group"
+            android:padding="16dp"
+            android:text="Meldingen worden geladen..."
+            android:textColor="#263238"
+            android:textSize="15sp"
+            android:lineSpacingExtra="4dp" />
+
+        <!-- Behandelingen -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Behandelingen"
+            android:textColor="#176B78"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/textTreatments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_option_group"
+            android:padding="16dp"
+            android:text="Behandelingen worden geladen..."
+            android:textColor="#263238"
+            android:textSize="15sp"
+            android:lineSpacingExtra="4dp" />
+
+        <!-- Geschiedenis -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Geschiedenis"
+            android:textColor="#176B78"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hier zie je wie wat heeft toegevoegd, gewijzigd of verwijderd en wanneer."
+            android:textColor="#607D8B"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/textHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_option_group"
+            android:padding="16dp"
+            android:text="Geschiedenis wordt geladen..."
+            android:textColor="#263238"
+            android:textSize="15sp"
+            android:lineSpacingExtra="4dp" />
+
+        <!-- Terugknop -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Terug"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:backgroundTint="#009688"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp" />
+
+    </LinearLayout>
+
+</ScrollView>
