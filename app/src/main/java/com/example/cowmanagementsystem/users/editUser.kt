@@ -54,7 +54,6 @@ class editUser : AppCompatActivity() {
 
         // Koppel de velden aan de XML
         val userNameField = findViewById<EditText>(R.id.editTextDate6)
-        val passwordField = findViewById<EditText>(R.id.editTextDate4)
         val statusGroup = findViewById<RadioGroup>(R.id.genderGroup)
         val rolesSpinner = findViewById<Spinner>(R.id.spinnerRoles)
 
@@ -63,7 +62,7 @@ class editUser : AppCompatActivity() {
 
         // Het wachtwoord is gehasht in de database.
         // Laat het veld daarom leeg; vul de hash niet in als wachtwoord.
-        passwordField.setText("")
+
 
         // Selecteer de status
         when (userData["active"]) {

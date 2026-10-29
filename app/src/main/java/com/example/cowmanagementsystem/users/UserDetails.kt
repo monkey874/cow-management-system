@@ -51,11 +51,11 @@ class UserDetails : AppCompatActivity() {
 
 
                 userTitleExtra.text = ("Gebruiker: " + user["userName"])
-                userDescriptionExtra.text = ("De informatie van gebruiker " + user["userName"] + "word hier weegegeven.")
+                userDescriptionExtra.text = ("De informatie van gebruiker " + user["userName"] + " word hier weegegeven.")
 
-                userNamePlaceholder.text = user["userName"]
-                rolePlaceholder.text = user["roleId"]
-                statusPlaceholder.text = user["active"]
+                userNamePlaceholder.text = ("Gebruikersnaam: " + user["userName"])
+                rolePlaceholder.text = ("Rol: " + user["roleId"])
+                statusPlaceholder.text = ("Status: " + user["active"])
 
             }
 
