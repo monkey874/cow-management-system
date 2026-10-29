@@ -101,6 +101,15 @@
                 android:singleLine="true"
                 android:layout_marginBottom="12dp" />
 
+            <TextView
+                android:id="@+id/GebruikersnaamError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"/>
+
             <EditText
                 android:id="@+id/editTextDate4"
                 android:layout_width="match_parent"
@@ -115,6 +124,15 @@
                 android:textSize="16sp"
                 android:singleLine="true"
                 android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:id="@+id/wachtwoordError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"/>
 
             <TextView
                 android:id="@+id/textView2"
@@ -156,6 +174,15 @@
                     android:textSize="15sp" />
 
             </RadioGroup>
+
+            <TextView
+                android:id="@+id/gebruikerStatusError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"/>
 
 
             <Spinner

@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.dasboard.ActivityDashboard
+import com.example.cowmanagementsystem.functies.ValidateInput
 import org.mindrot.jbcrypt.BCrypt
 
 class Login : AppCompatActivity() {
@@ -33,12 +34,16 @@ class Login : AppCompatActivity() {
 
     fun getAllInfo() {
 
-
+        val defclass = ValidateInput()
         val userNameInput = findViewById<EditText>(R.id.gebruikersnaam)
         val userPasswordInput = findViewById<EditText>(R.id.wachtwoord)
         val subButton = findViewById<Button>(R.id.button)
 
         subButton.setOnClickListener {
+
+            if (!defclass.validateField(findViewById(R.id.gebruikersnaam), findViewById(R.id.GebruikersnaamError), "Gebruikersnaam is niet ingevuld")) return@setOnClickListener
+            if (!defclass.validateField(findViewById(R.id.wachtwoord), findViewById(R.id.wachtwoordError), "Wachtwoord is niet ingevuld")) return@setOnClickListener
+
 
             val dbHelper = DatabaseHelper(this)
             val loginDataList = dbHelper.getIdLog("users",userNameInput.text.toString(), "userName")

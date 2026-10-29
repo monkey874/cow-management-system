@@ -102,6 +102,15 @@
                 android:singleLine="true"
                 android:layout_marginBottom="12dp" />
 
+            <TextView
+                android:id="@+id/cowNumberError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"/>
+
             <EditText
                 android:id="@+id/editTextDate4"
                 android:layout_width="match_parent"
@@ -117,6 +126,16 @@
                 android:singleLine="true"
                 android:layout_marginBottom="12dp" />
 
+            <TextView
+                android:id="@+id/cowEargtagError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"/>
+
+
             <EditText
                 android:id="@+id/editTextDate3"
                 android:layout_width="match_parent"
@@ -131,6 +150,15 @@
                 android:textSize="16sp"
                 android:singleLine="true"
                 android:layout_marginBottom="24dp" />
+
+            <TextView
+                android:id="@+id/cowDataOfBurteError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"/>
 
             <!-- Geslacht -->
 
@@ -174,6 +202,15 @@
                     android:textSize="15sp" />
 
             </RadioGroup>
+
+            <TextView
+                android:id="@+id/genderError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"/>
 
             <!-- Kleur -->
 
@@ -258,6 +295,14 @@
 
             </RadioGroup>
 
+            <TextView
+                android:id="@+id/colorError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"/>
             <!-- Opslaan -->
 
             <Button

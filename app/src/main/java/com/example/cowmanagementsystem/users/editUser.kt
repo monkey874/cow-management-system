@@ -17,6 +17,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.database.DatabaseHelper
+import com.example.cowmanagementsystem.functies.ValidateInput
 
 class editUser : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -122,6 +123,7 @@ class editUser : AppCompatActivity() {
         if (selectedIndex >= 0) {
             rolesSpinner.setSelection(selectedIndex)
         }
+        val defclass = ValidateInput()
         val makeButton = findViewById<Button>(R.id.button)
         makeButton.setOnClickListener {
             val dbHelper = DatabaseHelper(this)
@@ -130,6 +132,8 @@ class editUser : AppCompatActivity() {
             val statusGroup = findViewById<RadioGroup>(R.id.genderGroup)
 
             val userNameText = userNamePlaceholder.text.toString()
+            if (!defclass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.GebruikersnaamError), "gebruikersnaam mag niet leeg zijn")) return@setOnClickListener
+            if (!defclass.validateRadioGroup(statusGroup, findViewById(R.id.gebruikerStatusError), "Selecteer een geslacht")) return@setOnClickListener
 
             val spinnerPlaceholder = findViewById<Spinner>(R.id.spinnerRoles)
 

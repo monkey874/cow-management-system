@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.functies.BaseActivity
+import com.example.cowmanagementsystem.functies.ValidateInput
 import com.example.cowmanagementsystem.functies.generateList
 import com.example.cowmanagementsystem.login.Login
 
@@ -51,6 +52,7 @@ class AddNotifications : BaseActivity() {
 
     }
     fun getAllInfo(){
+        val defclass = ValidateInput()
         val dbHelper = DatabaseHelper(this)
         val saveButton = findViewById<Button>(R.id.button)
         saveButton.setOnClickListener {
@@ -59,6 +61,10 @@ class AddNotifications : BaseActivity() {
             val nameNotificationPlaceholder = findViewById<EditText>(R.id.editTextDate6)
             val descriptionNotificationPlaceholder = findViewById<EditText>(R.id.editTextDate4)
             val spinnerPlaceholder = findViewById<Spinner>(R.id.spinnerCows)
+
+            if (!defclass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.meldingNameError), "De naam van de melding mag niet leeg zijn")) return@setOnClickListener
+            if (!defclass.validateField(findViewById(R.id.editTextDate4), findViewById(R.id.meldingOmschrijvingError), "De omschrijving van de melding mag niet leeg zijn")) return@setOnClickListener
+
 
             // all the values of the placeholders
             val nameNotificationText = nameNotificationPlaceholder.text.toString()

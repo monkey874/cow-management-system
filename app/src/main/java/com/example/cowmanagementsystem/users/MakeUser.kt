@@ -17,6 +17,7 @@ import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.cows.ShowAllCows
+import com.example.cowmanagementsystem.functies.ValidateInput
 import com.example.cowmanagementsystem.functies.generateList
 
 class MakeUser : BaseActivity() {
@@ -53,6 +54,7 @@ class MakeUser : BaseActivity() {
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun getAllInfo(){
+        val defclass = ValidateInput()
         val makeButton = findViewById<Button>(R.id.button)
         makeButton.setOnClickListener {
             val dbHelper = DatabaseHelper(this)
@@ -60,6 +62,11 @@ class MakeUser : BaseActivity() {
             val userNamePlaceholder = findViewById<TextView>(R.id.editTextDate6)
             val passwordPlaceholder = findViewById<TextView>(R.id.editTextDate4)
             val statusGroup = findViewById<RadioGroup>(R.id.genderGroup)
+
+            if (!defclass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.GebruikersnaamError), "gebruikersnaam mag niet leeg zijn")) return@setOnClickListener
+            if (!defclass.validateField(findViewById(R.id.editTextDate4), findViewById(R.id.wachtwoordError), "wachtwoord mag niet leeg zijn")) return@setOnClickListener
+
+            if (!defclass.validateRadioGroup(statusGroup, findViewById(R.id.gebruikerStatusError), "Selecteer een status")) return@setOnClickListener
 
             val userNameText = userNamePlaceholder.text.toString()
             val passwordText = passwordPlaceholder.text.toString()

@@ -15,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
+import com.example.cowmanagementsystem.functies.ValidateInput
 
 class AddCow : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +34,7 @@ class AddCow : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getAllInfo() {
+        val defclass = ValidateInput()
 
         val saveButton = findViewById<Button>(R.id.button)
         saveButton.setOnClickListener {
@@ -44,6 +46,14 @@ class AddCow : BaseActivity() {
 
             val genderGroup = findViewById<RadioGroup>(R.id.genderGroup)
             val colorGroup = findViewById<RadioGroup>(R.id.colorGroup)
+
+            if (!defclass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.cowNumberError), "Koenummer mag niet leeg zijn")) return@setOnClickListener
+            if (!defclass.validateField(findViewById(R.id.editTextDate4), findViewById(R.id.cowEargtagError), "oormerknummer mag niet leeg zijn")) return@setOnClickListener
+            if (!defclass.validateField(findViewById(R.id.editTextDate3),findViewById(R.id.cowDataOfBurteError), "geboortedatum mag niet leeg zijn")) return@setOnClickListener
+
+            if (!defclass.validateRadioGroup(genderGroup, findViewById(R.id.genderError), "Selecteer een geslacht")) return@setOnClickListener
+            if (!defclass.validateRadioGroup(colorGroup, findViewById(R.id.colorError), "Selecteer een kleur")) return@setOnClickListener
+
 
             // all the values of the placeholders and groups
             val cowNumberText = cowNumberPlaceholder.text.toString()

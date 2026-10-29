@@ -55,8 +55,8 @@ class AddOwnTreatment : AppCompatActivity() {
 
         // all treatmentInfo in a mutableStateMapOf and push everything to the database
         subBtn.setOnClickListener {
-            val spinnerPlaceholder = findViewById<Spinner>(R.id.spinnerTreatments)
 
+            val spinnerPlaceholder = findViewById<Spinner>(R.id.spinnerTreatments)
             val selectedCowText = spinnerPlaceholder.selectedItem.toString()
             val cowInfo = dbHelper.getString("treatments",selectedCowText,"treatmentName")
             val cowId = cowInfo[0]["treatmentId"].toString()

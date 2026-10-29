@@ -13,6 +13,7 @@ import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.cows.ShowAllCows
 import com.example.cowmanagementsystem.dasboard.ActivityDashboard
+import com.example.cowmanagementsystem.functies.ValidateInput
 
 class AddTreatment : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,12 +31,15 @@ class AddTreatment : BaseActivity() {
 
     fun getAllInfo(){
         val saveButton = findViewById<Button>(R.id.button)
-
+        val defclass = ValidateInput()
         saveButton.setOnClickListener {
 
             // all text field placeholder and groups
             val treatmentNamePlaceholder = findViewById<EditText>(R.id.editTextDate6)
             val treatmentDescriptionPlaceholder = findViewById<EditText>(R.id.editTextDate4)
+
+            if (!defclass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.nameError), "De naam van de behandeling mag niet leeg zijn")) return@setOnClickListener
+            if (!defclass.validateField(findViewById(R.id.editTextDate4), findViewById(R.id.omschrijvingError), "De omschrijving van de behandeling mag niet leeg zijn")) return@setOnClickListener
 
             val treatmentNameText = treatmentNamePlaceholder.text.toString()
             val treatmentDescriptionText = treatmentDescriptionPlaceholder.text.toString()
