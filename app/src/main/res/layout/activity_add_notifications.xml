@@ -137,6 +137,16 @@
                 android:layout_marginBottom="12dp"/>
 
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selecteer een koe"
+                android:textColor="#176B78"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp" />
+
             <Spinner
                 android:id="@+id/spinnerCows"
                 android:layout_width="match_parent"

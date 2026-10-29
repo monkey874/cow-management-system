@@ -39,6 +39,14 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Algemene gegevens"
+                android:textColor="#176B78"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
 
             <!-- Kaart: Algemene gegevens -->
             <LinearLayout
@@ -50,14 +58,6 @@
                 android:elevation="3dp"
                 android:padding="20dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Algemene gegevens"
-                    android:textColor="#176B78"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
 
                 <TextView
                     android:id="@+id/gebruikersnaam"

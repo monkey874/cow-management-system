@@ -36,6 +36,11 @@ class NotificationDetails : AppCompatActivity() {
 
         val notificationsDescriptionExtra = findViewById<TextView>(R.id.textOmschrijving)
         val notificationsTitleExtra = findViewById<TextView>(R.id.titleOmschrijving)
+        val cowConnection = findViewById<TextView>(R.id.cowConnetion)
+        val user = findViewById<TextView>(R.id.user)
+        val dataOfBuld = findViewById<TextView>(R.id.aangemaaktOp)
+        val processed = findViewById<TextView>(R.id.proccesd)
+
         val deleteButton = findViewById<Button>(R.id.button1)
 
 
@@ -46,8 +51,12 @@ class NotificationDetails : AppCompatActivity() {
             notificationsTitlePlaceholder.text = ("Melding: " + notification["title"])
             notificationsDescriptionPlaceholder.text = ("De informatie van melding word hier weegegeven.")
 
-            notificationsTitleExtra.text = (notification["title"])
-            notificationsDescriptionExtra.text = (notification["description"])
+            notificationsTitleExtra.text = ("Titel: " + notification["title"])
+            notificationsDescriptionExtra.text = ("Omschrijving: " +notification["description"])
+            cowConnection.text = ("Gekoppeld met koe: " + notification["cowId"])
+            user.text = ("Gemaakt door gebruiker: " + notification["userId"])
+            dataOfBuld.text = ("Aagemaakt op: " + notification["createdOn"])
+            processed.text = ("verwerkt: " + notification["processed"])
 
         }
 
