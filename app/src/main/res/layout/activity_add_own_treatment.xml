@@ -50,90 +50,14 @@
                 android:textSize="14sp" />
 
             <!-- Algemene gegevens -->
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Algemene gegevens"
+                android:text="behandeling"
                 android:textColor="#176B78"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="12dp" />
-
-            <EditText
-                android:id="@+id/editTextDate6"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="@drawable/bg_input"
-                android:hint="behandelomschrijving"
-                android:inputType="text"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:textColor="#263238"
-                android:textColorHint="#78909C"
-                android:textSize="16sp"
-                android:singleLine="true"
-                android:layout_marginBottom="12dp" />
-
-
-            <EditText
-                android:id="@+id/editTextDate3"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="@drawable/bg_input"
-                android:hint="uitgevoer op"
-                android:inputType="date"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:textColor="#263238"
-                android:textColorHint="#78909C"
-                android:textSize="16sp"
-                android:singleLine="true"
-                android:layout_marginBottom="24dp" />
-
-            <!-- Geslacht -->
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Geslacht"
-                android:textColor="#176B78"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp" />
-
-            <RadioGroup
-                android:id="@+id/genderGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp"
-                android:background="@drawable/bg_option_group"
-                android:layout_marginBottom="24dp">
-
-                <RadioButton
-                    android:id="@+id/radioButton11"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:buttonTint="#009688"
-                    android:paddingStart="8dp"
-                    android:text="Mannelijk"
-                    android:textColor="#263238"
-                    android:textSize="15sp" />
-
-                <RadioButton
-                    android:id="@+id/radioButton10"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:buttonTint="#009688"
-                    android:paddingStart="8dp"
-                    android:text="Vrouwelijk"
-                    android:textColor="#263238"
-                    android:textSize="15sp" />
-
-            </RadioGroup>
-
 
             <Spinner
                 android:id="@+id/spinnerTreatments"
@@ -143,6 +67,78 @@
                 android:paddingEnd="12dp"
                 android:background="@drawable/bg_input"
                 android:spinnerMode="dropdown" />
+
+            <TextView
+                android:id="@+id/errorSpinnerTreatments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Algemene gegevens"
+                android:textColor="#176B78"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp" />
+            <EditText
+                android:id="@+id/editTextDate3"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_input"
+                android:hint="uitgevoerd op"
+                android:inputType="date"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:textColor="#263238"
+                android:textColorHint="#78909C"
+                android:textSize="16sp"
+                android:singleLine="true"
+                android:layout_marginBottom="24dp" />
+
+            <TextView
+                android:id="@+id/errorUitgevoerdOp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"/>
+
+
+            <EditText
+                android:id="@+id/editTextDate6"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_input"
+                android:hint="notitie"
+                android:inputType="text"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:textColor="#263238"
+                android:textColorHint="#78909C"
+                android:textSize="16sp"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:id="@+id/errorNotitie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"/>
+
+
+            <!-- Geslacht -->
+
+
+
 
 
             <!-- Kleur -->
