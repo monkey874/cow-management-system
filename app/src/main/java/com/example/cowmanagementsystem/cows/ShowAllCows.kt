@@ -40,7 +40,7 @@ class ShowAllCows : BaseActivity() {
         val needValues = listOf("cowID", "cowNumber")
         val cowInfo = dbHelper.getItems("cows", needValues)
 
-        for (cow in cowInfo) {
+        for (cow in cowInfo.reversed()) {
             val cowLayout = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL
                 setPadding(16, 16, 16, 16)

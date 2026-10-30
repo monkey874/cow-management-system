@@ -36,7 +36,7 @@ class ShowAllNotifications : BaseActivity() {
         val needValues = listOf("notificationId", "title")
         val notificationsInfo = dbHelper.getItems("notifications", needValues)
 
-        for (notification in notificationsInfo) {
+        for (notification in notificationsInfo.reversed()) {
 
             val cowLayout = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL

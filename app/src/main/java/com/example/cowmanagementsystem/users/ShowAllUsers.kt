@@ -35,7 +35,7 @@ class ShowAllUsers : BaseActivity() {
         val needValues = listOf("userId", "userName")
         val userInfo = dbHelper.getItems("users", needValues)
 
-        for (user in userInfo) {
+        for (user in userInfo.reversed()) {
 
             val cowLayout = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL

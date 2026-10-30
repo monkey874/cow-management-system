@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter
 
 
 class DatabaseHelper(context: Context) :
-    SQLiteOpenHelper(context, "cowManagementSystem.db", null, 20) {
+    SQLiteOpenHelper(context, "cowManagementSystem.db", null, 21) {
 
     override fun onCreate(db: SQLiteDatabase) {
 
