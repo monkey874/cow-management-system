@@ -12,9 +12,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.cows.ShowAllCows.Companion.cowId
+import com.example.cowmanagementsystem.functies.BaseActivity
 import kotlin.text.toIntOrNull
 
-class UserDetails : AppCompatActivity() {
+class UserDetails : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,6 +27,7 @@ class UserDetails : AppCompatActivity() {
 
         }
         getAllInfo()
+        setupBackButton()
     }
         @SuppressLint("SetTextI18n")
         fun getAllInfo(){

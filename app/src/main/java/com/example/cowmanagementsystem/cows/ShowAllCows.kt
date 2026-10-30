@@ -28,7 +28,7 @@ class ShowAllCows : BaseActivity() {
             insets
         }
         showAll()
-        setupBackButton()
+        setupBackToDashboard()
 
     }
 

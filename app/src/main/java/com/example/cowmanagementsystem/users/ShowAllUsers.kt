@@ -25,7 +25,7 @@ class ShowAllUsers : BaseActivity() {
             insets
         }
         showAll()
-        setupBackButton()
+        setupBackToDashboard()
     }
     @SuppressLint("UseCompatLoadingForDrawables")
     fun showAll(){

@@ -13,10 +13,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
+import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.treatment.AddOwnTreatment
 import kotlin.text.toIntOrNull
 
-class ActivityCowDetails : AppCompatActivity() {
+class ActivityCowDetails : BaseActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,7 @@ class ActivityCowDetails : AppCompatActivity() {
             insets
         }
         getAllInfo()
+        setupBackButton()
     }
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")

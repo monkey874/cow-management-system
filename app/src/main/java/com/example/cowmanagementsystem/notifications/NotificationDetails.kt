@@ -11,8 +11,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
+import com.example.cowmanagementsystem.functies.BaseActivity
 
-class NotificationDetails : AppCompatActivity() {
+class NotificationDetails : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,6 +24,7 @@ class NotificationDetails : AppCompatActivity() {
             insets
         }
         getAllInfo()
+        setupBackButton()
     }
     @SuppressLint("SetTextI18n")
     fun  getAllInfo(){

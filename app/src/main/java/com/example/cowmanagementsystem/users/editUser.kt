@@ -17,9 +17,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.database.DatabaseHelper
+import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.functies.ValidateInput
 
-class editUser : AppCompatActivity() {
+class editUser : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,6 +31,7 @@ class editUser : AppCompatActivity() {
             insets
         }
         getAllData()
+        setupBackButton()
     }
 
     fun getAllData() {
@@ -132,7 +134,7 @@ class editUser : AppCompatActivity() {
 
             val userNameText = userNamePlaceholder.text.toString()
             if (!defclass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.GebruikersnaamError), "gebruikersnaam mag niet leeg zijn")) return@setOnClickListener
-            if (!defclass.validateRadioGroup(statusGroup, findViewById(R.id.gebruikerStatusError), "Selecteer een geslacht")) return@setOnClickListener
+            if (!defclass.validateRadioGroup(statusGroup, findViewById(R.id.gebruikerStatusError), "Selecteer een status")) return@setOnClickListener
 
             val spinnerPlaceholder = findViewById<Spinner>(R.id.spinnerRoles)
 

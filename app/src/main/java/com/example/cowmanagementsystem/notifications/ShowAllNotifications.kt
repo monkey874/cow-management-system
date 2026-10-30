@@ -25,7 +25,7 @@ class ShowAllNotifications : BaseActivity() {
             insets
         }
         showAll()
-        setupBackButton()
+        setupBackToDashboard()
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

@@ -28,32 +28,59 @@
             android:paddingTop="24dp"
             android:paddingBottom="28dp">
 
-            <!-- Titel -->
+            <!-- Header: terugknop en titel -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
 
+                <Button
+                    android:id="@+id/btnBack"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@string/goBack"
+                    android:textColor="#176B78"
+                    android:textSize="22sp"
+                    android:backgroundTint="#E0F2F1" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Behandeling aanmaken"
+                        android:textColor="#176B78"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Vul de gegevens van de behandeling in"
+                        android:textColor="#78909C"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Behandeling -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"
-                android:text="behandeling aanmaken"
-                android:textColor="#176B78"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:gravity="center"
-                android:text="Vul de gegevens van de behandeling in"
-                android:textColor="#78909C"
-                android:textSize="14sp" />
-
-            <!-- Algemene gegevens -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="behandeling"
+                android:text="Behandeling"
                 android:textColor="#176B78"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -63,9 +90,9 @@
                 android:id="@+id/spinnerTreatments"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:background="@drawable/bg_input"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:background="@drawable/bg_input"
                 android:spinnerMode="dropdown" />
 
             <TextView
@@ -75,8 +102,9 @@
                 android:textColor="#F44336"
                 android:textSize="14sp"
                 android:visibility="gone"
-                android:layout_marginBottom="12dp"/>
+                android:layout_marginBottom="12dp" />
 
+            <!-- Algemene gegevens -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,12 +114,13 @@
                 android:textStyle="bold"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp" />
+
             <EditText
                 android:id="@+id/editTextDate3"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@drawable/bg_input"
-                android:hint="uitgevoerd op"
+                android:hint="Uitgevoerd op"
                 android:inputType="date"
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
@@ -108,15 +137,14 @@
                 android:textColor="#F44336"
                 android:textSize="14sp"
                 android:visibility="gone"
-                android:layout_marginBottom="12dp"/>
-
+                android:layout_marginBottom="12dp" />
 
             <EditText
                 android:id="@+id/editTextDate6"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@drawable/bg_input"
-                android:hint="notitie"
+                android:hint="Notitie"
                 android:inputType="text"
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
@@ -132,26 +160,17 @@
                 android:textColor="#F44336"
                 android:textSize="14sp"
                 android:visibility="gone"
-                android:layout_marginBottom="12dp"/>
-
-
-            <!-- Geslacht -->
-
-
-
-
-
-            <!-- Kleur -->
+                android:layout_marginBottom="12dp" />
 
             <!-- Opslaan -->
-
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="#009688"
-                android:text="behandeling aanmaken"
+                android:text="Behandeling aanmaken"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />

@@ -15,12 +15,13 @@ import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.cows.ActivityCowDetails
 import com.example.cowmanagementsystem.cows.ShowAllCows
+import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.functies.ValidateInput
 import com.example.cowmanagementsystem.functies.generateList
 import com.example.cowmanagementsystem.login.Login
 import kotlin.text.toIntOrNull
 
-class AddOwnTreatment : AppCompatActivity() {
+class AddOwnTreatment : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,6 +33,7 @@ class AddOwnTreatment : AppCompatActivity() {
         }
         getAllInfo()
         prepareDropdown()
+        setupBackButton()
     }
 
     fun prepareDropdown(){
