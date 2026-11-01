@@ -78,10 +78,10 @@ class AddOwnTreatment : BaseActivity() {
             val cowId = cowInfo[0]["treatmentId"].toString()
             val treatmentInfo = mutableStateMapOf(
                 "treatmentId" to cowId,
-                "extraTreatmentDescription" to notes.toString(),
+                "extraTreatmentDescription" to notes.text.toString(),
                 "cowId" to ShowAllCows.cowId.toString(),
                 "userID" to Login.UserID.toString(),
-                "doneOn" to dateOfTreatment.toString()
+                "doneOn" to dateOfTreatment.text.toString()
 
             )
             dbHelper.addItem(treatmentInfo, "cowTreatments")
