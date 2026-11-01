@@ -2,12 +2,13 @@ package com.example.cowmanagementsystem.notifications
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
+import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.database.DatabaseHelper
@@ -15,6 +16,7 @@ import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.functies.BaseActivity
 
 class NotificationDetails : BaseActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,6 +29,7 @@ class NotificationDetails : BaseActivity() {
         getAllInfo()
         setupBackButton()
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     fun getAllInfo() {
 
@@ -45,32 +48,15 @@ class NotificationDetails : BaseActivity() {
         val notificationDataList = dbHelper.joinNotification(notificationId)
 
         // Koppel de TextViews aan de XML
-        val notificationsDescriptionPlaceholder =
-            findViewById<TextView>(R.id.desc)
-
-        val notificationsTitlePlaceholder =
-            findViewById<TextView>(R.id.title)
-
-        val notificationsDescriptionExtra =
-            findViewById<TextView>(R.id.textOmschrijving)
-
-        val notificationsTitleExtra =
-            findViewById<TextView>(R.id.titleOmschrijving)
-
-        val cowConnection =
-            findViewById<TextView>(R.id.cowConnetion)
-
-        val user =
-            findViewById<TextView>(R.id.user)
-
-        val dataOfBuld =
-            findViewById<TextView>(R.id.aangemaaktOp)
-
-        val processed =
-            findViewById<TextView>(R.id.proccesd)
-
-        val deleteButton =
-            findViewById<Button>(R.id.button1)
+        val notificationsDescriptionPlaceholder = findViewById<TextView>(R.id.desc)
+        val notificationsTitlePlaceholder = findViewById<TextView>(R.id.title)
+        val notificationsDescriptionExtra = findViewById<TextView>(R.id.textOmschrijving)
+        val notificationsTitleExtra = findViewById<TextView>(R.id.titleOmschrijving)
+        val cowConnection = findViewById<TextView>(R.id.cowConnetion)
+        val user = findViewById<TextView>(R.id.user)
+        val dataOfBurt = findViewById<TextView>(R.id.aangemaaktOp)
+        val processed = findViewById<TextView>(R.id.proccesd)
+        val deleteButton = findViewById<Button>(R.id.button1)
 
         // Controleer of de melding bestaat
         if (notificationDataList.isNotEmpty()) {
@@ -88,8 +74,7 @@ class NotificationDetails : BaseActivity() {
             // Vul de pagina
             notificationsTitlePlaceholder.text = "Melding: $title"
 
-            notificationsDescriptionPlaceholder.text =
-                "De informatie van deze melding wordt hier weergegeven."
+            notificationsDescriptionPlaceholder.text = "De informatie van deze melding wordt hier weergegeven."
 
             notificationsTitleExtra.text = "Titel: $title"
             notificationsDescriptionExtra.text = "Omschrijving: $description"
@@ -97,11 +82,10 @@ class NotificationDetails : BaseActivity() {
             cowConnection.text = "Gekoppeld met koe: $cowNumber"
             user.text = "Gemaakt door gebruiker: $userName"
 
-            dataOfBuld.text = "Aangemaakt op: $createdOn"
+            dataOfBurt.text = "Aangemaakt op: $createdOn"
             processed.text = "Verwerkt: $processedStatus"
 
         } else {
-            Toast.makeText(this, "Melding niet gevonden", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
@@ -115,7 +99,6 @@ class NotificationDetails : BaseActivity() {
                 "notificationId"
             )
 
-            Toast.makeText(this, "Melding verwijderd", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, ShowAllNotifications::class.java)
             startActivity(intent)
@@ -123,15 +106,4 @@ class NotificationDetails : BaseActivity() {
         }
     }
 
-    fun delete(){
-        val cowId = intent.getStringExtra("notificationId")
-
-        val dbHelper = DatabaseHelper(this)
-        dbHelper.delete(
-            "notifications",
-            cowId?.toIntOrNull() ?: 0,
-            "notificationId",
-
-            )
-    }
 }

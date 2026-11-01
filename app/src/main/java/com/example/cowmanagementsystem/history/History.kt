@@ -27,17 +27,17 @@ class History : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btnKoeien).setOnClickListener {
-            val intent = Intent(this, cowListHistory::class.java)
+            val intent = Intent(this, CowListHistory::class.java)
             startActivity(intent)
         }
 
         findViewById<Button>(R.id.btnUsers).setOnClickListener {
-            val intent = Intent(this, userListHistory::class.java)
+            val intent = Intent(this, UserListHistory::class.java)
             startActivity(intent)
         }
 
         findViewById<Button>(R.id.btnMeldingen).setOnClickListener {
-            val intent = Intent(this, notificationListHistory::class.java)
+            val intent = Intent(this, NotificationListHistory::class.java)
             startActivity(intent)
         }
     }

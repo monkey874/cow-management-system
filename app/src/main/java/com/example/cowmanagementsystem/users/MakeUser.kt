@@ -16,11 +16,11 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
-import com.example.cowmanagementsystem.cows.ShowAllCows
 import com.example.cowmanagementsystem.functies.ValidateInput
-import com.example.cowmanagementsystem.functies.generateList
+import com.example.cowmanagementsystem.functies.GenerateList
 
 class MakeUser : BaseActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -48,13 +48,13 @@ class MakeUser : BaseActivity() {
             cowData["roleName"]?.let { cowNumbers.add(it) }
         }
 
-        val def = generateList(this)
-        def.vulrolesDropdown(cowNumbers)
+        val def = GenerateList(this)
+        def.fullRolesDropdown(cowNumbers)
 
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun getAllInfo(){
-        val defclass = ValidateInput()
+        val defClass = ValidateInput()
         val makeButton = findViewById<Button>(R.id.button)
         makeButton.setOnClickListener {
             val dbHelper = DatabaseHelper(this)
@@ -63,10 +63,10 @@ class MakeUser : BaseActivity() {
             val passwordPlaceholder = findViewById<TextView>(R.id.editTextDate4)
             val statusGroup = findViewById<RadioGroup>(R.id.genderGroup)
 
-            if (!defclass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.GebruikersnaamError), "gebruikersnaam mag niet leeg zijn")) return@setOnClickListener
-            if (!defclass.validateField(findViewById(R.id.editTextDate4), findViewById(R.id.wachtwoordError), "wachtwoord mag niet leeg zijn")) return@setOnClickListener
+            if (!defClass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.GebruikersnaamError), "gebruikersnaam mag niet leeg zijn")) return@setOnClickListener
+            if (!defClass.validateField(findViewById(R.id.editTextDate4), findViewById(R.id.wachtwoordError), "wachtwoord mag niet leeg zijn")) return@setOnClickListener
 
-            if (!defclass.validateRadioGroup(statusGroup, findViewById(R.id.gebruikerStatusError), "Selecteer een status")) return@setOnClickListener
+            if (!defClass.validateRadioGroup(statusGroup, findViewById(R.id.gebruikerStatusError), "Selecteer een status")) return@setOnClickListener
 
             val userNameText = userNamePlaceholder.text.toString()
             val passwordText = passwordPlaceholder.text.toString()

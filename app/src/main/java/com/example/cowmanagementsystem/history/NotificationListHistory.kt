@@ -1,5 +1,6 @@
 package com.example.cowmanagementsystem.history
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
@@ -12,13 +13,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.database.DatabaseHelper
-import com.example.cowmanagementsystem.users.UserDetails
+import com.example.cowmanagementsystem.notifications.NotificationDetails
 
-class userListHistory : AppCompatActivity() {
+class NotificationListHistory : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_user_list_history)
+        setContentView(R.layout.activity_notification_list_history)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -26,14 +27,16 @@ class userListHistory : AppCompatActivity() {
         }
         showAll()
     }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
     fun showAll(){
         val container = findViewById<LinearLayout>(R.id.linarLayoud)
 
         val dbHelper = DatabaseHelper(this)
-        val needValues = listOf("userId", "userName")
-        val userInfo = dbHelper.getItems("users", needValues)
+        val needValues = listOf("notificationId", "title")
+        val notificationsInfo = dbHelper.getItems("notifications", needValues)
 
-        for (user in userInfo) {
+        for (notification in notificationsInfo) {
 
             val cowLayout = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL
@@ -44,11 +47,11 @@ class userListHistory : AppCompatActivity() {
 
             cowLayout.setOnClickListener {
 
-                val intent = Intent(this, UserDetails::class.java)
+                val intent = Intent(this, NotificationDetails::class.java)
 
                 intent.putExtra(
-                    "userId",
-                    user["userId"].toString()
+                    "notificationId",
+                    notification["notificationId"].toString()
                 )
 
                 startActivity(intent)
@@ -56,7 +59,7 @@ class userListHistory : AppCompatActivity() {
 
             val textView = TextView(this).apply {
 
-                text = (user["userName"])
+                text = (notification["title"])
                 textSize = 16f
 
                 setTextColor("#263238".toColorInt())

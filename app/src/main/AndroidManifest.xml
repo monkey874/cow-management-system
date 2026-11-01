@@ -72,11 +72,11 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".cows.editCow"
+            android:name=".cows.EditCow"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".users.editUser"
+            android:name=".users.EditUser"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -84,15 +84,15 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".history.cowListHistory"
+            android:name=".history.CowListHistory"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".history.userListHistory"
+            android:name=".history.UserListHistory"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".history.notificationListHistory"
+            android:name=".history.NotificationListHistory"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity

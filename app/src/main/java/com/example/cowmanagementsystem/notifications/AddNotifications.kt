@@ -15,13 +15,14 @@ import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.functies.ValidateInput
-import com.example.cowmanagementsystem.functies.generateList
+import com.example.cowmanagementsystem.functies.GenerateList
 import com.example.cowmanagementsystem.login.Login
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 
 class AddNotifications : BaseActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -51,13 +52,13 @@ class AddNotifications : BaseActivity() {
             cowData["cowNumber"]?.let { cowNumbers.add(it) }
         }
 
-        val def = generateList(this)
-        def.vulKoeienDropdown(cowNumbers)
+        val def = GenerateList(this)
+        def.fullCowsDropdown(cowNumbers)
 
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun getAllInfo(){
-        val defclass = ValidateInput()
+        val defClass = ValidateInput()
         val dbHelper = DatabaseHelper(this)
         val saveButton = findViewById<Button>(R.id.button)
         saveButton.setOnClickListener {
@@ -67,8 +68,8 @@ class AddNotifications : BaseActivity() {
             val descriptionNotificationPlaceholder = findViewById<EditText>(R.id.editTextDate4)
             val spinnerPlaceholder = findViewById<Spinner>(R.id.spinnerCows)
 
-            if (!defclass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.meldingNameError), "De naam van de melding mag niet leeg zijn")) return@setOnClickListener
-            if (!defclass.validateField(findViewById(R.id.editTextDate4), findViewById(R.id.meldingOmschrijvingError), "De omschrijving van de melding mag niet leeg zijn")) return@setOnClickListener
+            if (!defClass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.meldingNameError), "De naan van de melding mag niet leeg zijn")) return@setOnClickListener
+            if (!defClass.validateField(findViewById(R.id.editTextDate4), findViewById(R.id.meldingOmschrijvingError), "De omschrijving van de melding mag niet leeg zijn")) return@setOnClickListener
 
 
             // all the values of the placeholders

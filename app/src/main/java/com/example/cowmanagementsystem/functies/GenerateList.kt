@@ -4,9 +4,9 @@ import android.app.Activity
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 
-class generateList(private val activity: Activity) {
+class GenerateList(private val activity: Activity) {
 
-    fun vulKoeienDropdown(koeien: List<String>) {
+    fun fullCowsDropdown(cows: List<String>) {
         val spinner = activity.findViewById<Spinner>(
             com.example.cowmanagementsystem.R.id.spinnerCows
         )
@@ -14,7 +14,7 @@ class generateList(private val activity: Activity) {
         val adapter = ArrayAdapter(
             activity,
             android.R.layout.simple_spinner_item,
-            koeien
+            cows
         )
 
         adapter.setDropDownViewResource(
@@ -24,7 +24,7 @@ class generateList(private val activity: Activity) {
         spinner.adapter = adapter
     }
 
-    fun vulTreatmentDropdown(koeien: List<String>) {
+    fun fullTreatmentDropdown(treatment: List<String>) {
         val spinner = activity.findViewById<Spinner>(
             com.example.cowmanagementsystem.R.id.spinnerTreatments
         )
@@ -32,7 +32,7 @@ class generateList(private val activity: Activity) {
         val adapter = ArrayAdapter(
             activity,
             android.R.layout.simple_spinner_item,
-            koeien
+            treatment
         )
 
         adapter.setDropDownViewResource(
@@ -41,7 +41,7 @@ class generateList(private val activity: Activity) {
 
         spinner.adapter = adapter
     }
-    fun vulrolesDropdown(koeien: List<String>) {
+    fun fullRolesDropdown(roles: List<String>) {
         val spinner = activity.findViewById<Spinner>(
             com.example.cowmanagementsystem.R.id.spinnerRoles
         )
@@ -49,7 +49,7 @@ class generateList(private val activity: Activity) {
         val adapter = ArrayAdapter(
             activity,
             android.R.layout.simple_spinner_item,
-            koeien
+            roles
         )
 
         adapter.setDropDownViewResource(

@@ -1,6 +1,8 @@
 package com.example.cowmanagementsystem.users
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -11,7 +13,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -20,7 +22,8 @@ import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.functies.ValidateInput
 
-class editUser : BaseActivity() {
+class EditUser : BaseActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,6 +37,8 @@ class editUser : BaseActivity() {
         setupBackButton()
     }
 
+    @SuppressLint("CutPasteId")
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getAllData() {
         val userId = intent.getStringExtra("userId")?.toIntOrNull()
 
@@ -93,7 +98,7 @@ class editUser : BaseActivity() {
             }
         }
 
-// Zet de rol van de gebruiker als eerste
+    // Zet de rol van de gebruiker als eerste
         if (roleId != null) {
             rolesList.sortWith(
                 compareBy<Pair<Int, String>> { if (it.first == roleId) 0 else 1 }
@@ -103,7 +108,7 @@ class editUser : BaseActivity() {
             rolesList.sortBy { it.second }
         }
 
-// Vul de Spinner met de rolnamen
+        // Vul de Spinner met de rolnamen
         val roleNames = rolesList.map { it.second }
 
         val adapter = ArrayAdapter(
@@ -118,13 +123,13 @@ class editUser : BaseActivity() {
 
         rolesSpinner.adapter = adapter
 
-// Selecteer de rol die bij de gebruiker hoort
+        // Selecteer de rol die bij de gebruiker hoort
         val selectedIndex = rolesList.indexOfFirst { it.first == roleId }
 
         if (selectedIndex >= 0) {
             rolesSpinner.setSelection(selectedIndex)
         }
-        val defclass = ValidateInput()
+        val defClass = ValidateInput()
         val makeButton = findViewById<Button>(R.id.button)
         makeButton.setOnClickListener {
             val dbHelper = DatabaseHelper(this)
@@ -133,8 +138,8 @@ class editUser : BaseActivity() {
             val statusGroup = findViewById<RadioGroup>(R.id.genderGroup)
 
             val userNameText = userNamePlaceholder.text.toString()
-            if (!defclass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.GebruikersnaamError), "gebruikersnaam mag niet leeg zijn")) return@setOnClickListener
-            if (!defclass.validateRadioGroup(statusGroup, findViewById(R.id.gebruikerStatusError), "Selecteer een status")) return@setOnClickListener
+            if (!defClass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.GebruikersnaamError), "gebruikersnaam mag niet leeg zijn")) return@setOnClickListener
+            if (!defClass.validateRadioGroup(statusGroup, findViewById(R.id.gebruikerStatusError), "Selecteer een status")) return@setOnClickListener
 
             val spinnerPlaceholder = findViewById<Spinner>(R.id.spinnerRoles)
 
@@ -151,7 +156,7 @@ class editUser : BaseActivity() {
                 "roleId" to cowId,
                 "active" to valueStaus,
             )
-            dbHelper.UpdateItem(data, "users", cowId)
+            dbHelper.updateItem(data, "users", cowId)
 
             val intent = Intent(this, ShowAllUsers::class.java)
             startActivity(intent)

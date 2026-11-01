@@ -1,5 +1,6 @@
 package com.example.cowmanagementsystem.history
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
@@ -12,10 +13,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.KoeProfiel
 import com.example.cowmanagementsystem.R
-import com.example.cowmanagementsystem.cows.ShowAllCows.Companion.cowId
 import com.example.cowmanagementsystem.database.DatabaseHelper
 
-class cowListHistory : AppCompatActivity() {
+class CowListHistory : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,6 +28,7 @@ class cowListHistory : AppCompatActivity() {
         showAll()
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
     fun showAll(){
         val container = findViewById<LinearLayout>(R.id.linarLayoud)
 

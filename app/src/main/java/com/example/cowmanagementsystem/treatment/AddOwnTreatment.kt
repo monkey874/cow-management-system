@@ -1,13 +1,13 @@
 package com.example.cowmanagementsystem.treatment
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,11 +17,11 @@ import com.example.cowmanagementsystem.cows.ActivityCowDetails
 import com.example.cowmanagementsystem.cows.ShowAllCows
 import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.functies.ValidateInput
-import com.example.cowmanagementsystem.functies.generateList
+import com.example.cowmanagementsystem.functies.GenerateList
 import com.example.cowmanagementsystem.login.Login
-import kotlin.text.toIntOrNull
 
 class AddOwnTreatment : BaseActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -50,14 +50,15 @@ class AddOwnTreatment : BaseActivity() {
             cowData["treatmentName"]?.let { cowNumbers.add(it) }
         }
 
-        val def = generateList(this)
-        def.vulTreatmentDropdown(cowNumbers)
+        val def = GenerateList(this)
+        def.fullTreatmentDropdown(cowNumbers)
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getAllInfo(){
         val dbHelper = DatabaseHelper(this)
-        val defclass = ValidateInput()
+        val defClass = ValidateInput()
         // all text field placeholder and groups and buttons
         val subBtn = findViewById<Button>(R.id.button)
 
@@ -69,8 +70,8 @@ class AddOwnTreatment : BaseActivity() {
             val notes = findViewById<EditText>(R.id.editTextDate6)
 
 
-            if (!defclass.validateField(findViewById(R.id.editTextDate3), findViewById(R.id.errorUitgevoerdOp), "Dit veld mag niet leeg zijn")) return@setOnClickListener
-            if (!defclass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.errorNotitie), "Dit veld mag niet leeg zijn")) return@setOnClickListener
+            if (!defClass.validateField(findViewById(R.id.editTextDate3), findViewById(R.id.errorUitgevoerdOp), "Dit veld mag niet leeg zijn")) return@setOnClickListener
+            if (!defClass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.errorNotitie), "Dit veld mag niet leeg zijn")) return@setOnClickListener
 
             val selectedCowText = spinnerPlaceholder.selectedItem.toString()
             val cowInfo = dbHelper.getString("treatments",selectedCowText,"treatmentName")

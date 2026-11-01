@@ -2,21 +2,22 @@ package com.example.cowmanagementsystem.users
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
+import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.R
-import com.example.cowmanagementsystem.cows.ShowAllCows.Companion.cowId
 import com.example.cowmanagementsystem.functies.BaseActivity
 import kotlin.text.toIntOrNull
 
 class UserDetails : BaseActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,6 +31,7 @@ class UserDetails : BaseActivity() {
         getAllInfo()
         setupBackButton()
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     fun getAllInfo() {
 
@@ -95,7 +97,7 @@ class UserDetails : BaseActivity() {
                 return@setOnClickListener
             }
 
-            val intent = Intent(this, editUser::class.java)
+            val intent = Intent(this, EditUser::class.java)
 
             // Als String doorgeven, omdat editUser getStringExtra gebruikt.
             intent.putExtra("userId", userId.toString())
@@ -107,6 +109,7 @@ class UserDetails : BaseActivity() {
 
 
 
+        @RequiresApi(Build.VERSION_CODES.O)
         fun delete(){
             val cowId = intent.getStringExtra("userId")
 

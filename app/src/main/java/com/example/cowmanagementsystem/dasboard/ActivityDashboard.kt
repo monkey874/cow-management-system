@@ -9,13 +9,11 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.R
 import com.example.cowmanagementsystem.cows.AddCow
 import com.example.cowmanagementsystem.cows.ShowAllCows
-import com.example.cowmanagementsystem.history.History
 import com.example.cowmanagementsystem.notifications.AddNotifications
 import com.example.cowmanagementsystem.notifications.ShowAllNotifications
 import com.example.cowmanagementsystem.treatment.AddTreatment
 import com.example.cowmanagementsystem.users.MakeUser
 import com.example.cowmanagementsystem.users.ShowAllUsers
-import com.example.cowmanagementsystem.users.UserDetails
 
 class ActivityDashboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,5 +1,6 @@
 package com.example.cowmanagementsystem.cows
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -7,10 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -19,7 +18,7 @@ import com.example.cowmanagementsystem.database.DatabaseHelper
 import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.functies.ValidateInput
 
-class editCow : BaseActivity() {
+class EditCow : BaseActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +34,7 @@ class editCow : BaseActivity() {
     }
 
 
+    @SuppressLint("CutPasteId")
     @RequiresApi(Build.VERSION_CODES.O)
     fun getAllInfo() {
         val cowId = intent.getStringExtra("cowId")?.toIntOrNull() ?: return
@@ -49,20 +49,11 @@ class editCow : BaseActivity() {
         val cowData = cowDataList[0]
 
         // Velden uit de XML
-        val cowNumberPlaceholder =
-            findViewById<EditText>(R.id.editTextDate6)
-
-        val earTagPlaceholder =
-            findViewById<EditText>(R.id.editTextDate4)
-
-        val dayOfBirthPlaceholder =
-            findViewById<EditText>(R.id.editTextDate3)
-
-        val genderGroup =
-            findViewById<RadioGroup>(R.id.genderGroup)
-
-        val colorGroup =
-            findViewById<RadioGroup>(R.id.colorGroup)
+        val cowNumberPlaceholder = findViewById<EditText>(R.id.editTextDate6)
+        val earTagPlaceholder = findViewById<EditText>(R.id.editTextDate4)
+        val dayOfBirthPlaceholder = findViewById<EditText>(R.id.editTextDate3)
+        val genderGroup = findViewById<RadioGroup>(R.id.genderGroup)
+        val colorGroup = findViewById<RadioGroup>(R.id.colorGroup)
 
         // Waarden invullen
         cowNumberPlaceholder.setText(cowData["cowNumber"] ?: "")
@@ -93,7 +84,7 @@ class editCow : BaseActivity() {
             colorGroup.clearCheck()
         }
 
-        val defclass = ValidateInput()
+        val defClass = ValidateInput()
         val saveButton = findViewById<Button>(R.id.button)
         saveButton.setOnClickListener {
 
@@ -105,12 +96,12 @@ class editCow : BaseActivity() {
             val genderGroup = findViewById<RadioGroup>(R.id.genderGroup)
             val colorGroup = findViewById<RadioGroup>(R.id.colorGroup)
 
-            if (!defclass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.cowNumberError), "Koenummer mag niet leeg zijn")) return@setOnClickListener
-            if (!defclass.validateField(findViewById(R.id.editTextDate4), findViewById(R.id.cowEargtagError), "oormerknummer mag niet leeg zijn")) return@setOnClickListener
-            if (!defclass.validateField(findViewById(R.id.editTextDate3),findViewById(R.id.cowDataOfBurteError), "geboortedatum mag niet leeg zijn")) return@setOnClickListener
+            if (!defClass.validateField(findViewById(R.id.editTextDate6), findViewById(R.id.cowNumberError), "Koenummer mag niet leeg zijn")) return@setOnClickListener
+            if (!defClass.validateField(findViewById(R.id.editTextDate4), findViewById(R.id.cowEargtagError), "oormerknummer mag niet leeg zijn")) return@setOnClickListener
+            if (!defClass.validateField(findViewById(R.id.editTextDate3),findViewById(R.id.cowDataOfBurteError), "geboortedatum mag niet leeg zijn")) return@setOnClickListener
 
-            if (!defclass.validateRadioGroup(genderGroup, findViewById(R.id.genderError), "Selecteer een geslacht")) return@setOnClickListener
-            if (!defclass.validateRadioGroup(colorGroup, findViewById(R.id.colorError), "Selecteer een kleur")) return@setOnClickListener
+            if (!defClass.validateRadioGroup(genderGroup, findViewById(R.id.genderError), "Selecteer een geslacht")) return@setOnClickListener
+            if (!defClass.validateRadioGroup(colorGroup, findViewById(R.id.colorError), "Selecteer een kleur")) return@setOnClickListener
 
 
             // all the values of the placeholders and groups
@@ -133,7 +124,7 @@ class editCow : BaseActivity() {
                 "gender" to valueGenderText,
                 "color" to valueColorText,
             )
-            dbHelper.UpdateItem(cowInfo, "cows", cowId.toString())
+            dbHelper.updateItem(cowInfo, "cows", cowId.toString())
 
             val intent = Intent(this, ShowAllCows::class.java)
             startActivity(intent)

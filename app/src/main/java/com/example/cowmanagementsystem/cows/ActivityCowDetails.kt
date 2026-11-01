@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cowmanagementsystem.database.DatabaseHelper
@@ -61,7 +60,7 @@ class ActivityCowDetails : BaseActivity() {
             val cow = cowDataList[0]
 
             cowTitlePlaceholder.text = ("Koe "+ cow["cowNumber"])
-            cowDescriptionPlaceholder.text = ("De informatie van koe " + cow["cowNumber"] + "word hier weegegeven.")
+            cowDescriptionPlaceholder.text = ("De informatie van koe " + cow["cowNumber"] + " word hier weegegeven.")
 
             cowNumberPlaceholder.text = ("Koe " + cow["cowNumber"])
             earTagPlaceholder.text = ("Oormerknummer: " + cow["earTagNumber"])
@@ -87,7 +86,7 @@ class ActivityCowDetails : BaseActivity() {
 
         editButton.setOnClickListener{
 
-            val intent = Intent(this, editCow::class.java)
+            val intent = Intent(this, EditCow::class.java)
             intent.putExtra(
                 "cowId",
                 cowId

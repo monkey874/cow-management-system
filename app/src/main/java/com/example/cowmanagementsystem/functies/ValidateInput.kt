@@ -1,15 +1,11 @@
 package com.example.cowmanagementsystem.functies
 
-import android.content.Context
-import android.util.Log
+
 import android.view.View
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.compose.runtime.mutableStateMapOf
-import androidx.core.R
-import com.example.cowmanagementsystem.cows.AddCow
+
 
 class ValidateInput {
 
