@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -29,55 +30,82 @@ class UserDetails : BaseActivity() {
         getAllInfo()
         setupBackButton()
     }
-        @SuppressLint("SetTextI18n")
-        fun getAllInfo(){
+    @SuppressLint("SetTextI18n")
+    fun getAllInfo() {
 
-            // all userInfo in a get from the database
-            val userId = intent.getStringExtra("userId")
-            val dbHelper = DatabaseHelper(this)
-            val userDataList = dbHelper.getId("users", userId?.toIntOrNull() ?: 0, "userId" )
+        // Haal de userId op
+        val userId = intent.getStringExtra("userId")?.toIntOrNull()
 
-            // all text field placeholder and buttons
-            val userNamePlaceholder = findViewById<TextView>(R.id.gebruikersnaam)
-            val rolePlaceholder = findViewById<TextView>(R.id.role)
-            val statusPlaceholder = findViewById<TextView>(R.id.status)
-
-            val userTitleExtra = findViewById<TextView>(R.id.title)
-            val userDescriptionExtra = findViewById<TextView>(R.id.desc)
-            val deleteBtn = findViewById<Button>(R.id.button1)
-            val update = findViewById<Button>(R.id.button2)
-
-
-            if (userDataList.isNotEmpty()) {
-                val user = userDataList[0]
-
-
-                userTitleExtra.text = ("Gebruiker: " + user["userName"])
-                userDescriptionExtra.text = ("De informatie van gebruiker " + user["userName"] + " word hier weegegeven.")
-
-                userNamePlaceholder.text = ("Gebruikersnaam: " + user["userName"])
-                rolePlaceholder.text = ("Rol: " + user["roleId"])
-                statusPlaceholder.text = ("Status: " + user["active"])
-
-            }
-
-
-            deleteBtn.setOnClickListener {
-                delete()
-                val intent = Intent(this, ShowAllUsers::class.java)
-                startActivity(intent)
-            }
-
-            update.setOnClickListener {
-                val intent = Intent(this, editUser::class.java)
-                intent.putExtra(
-                    "userId",
-                    userId
-                )
-                startActivity(intent)
-            }
-
+        if (userId == null) {
+            Toast.makeText(this, "Geen gebruiker gevonden", Toast.LENGTH_SHORT).show()
+            return
         }
+
+        val dbHelper = DatabaseHelper(this)
+        val userDataList = dbHelper.join(userId)
+        // Koppel de TextViews en buttons
+        val userNamePlaceholder = findViewById<TextView>(R.id.gebruikersnaam)
+        val rolePlaceholder = findViewById<TextView>(R.id.role)
+        val statusPlaceholder = findViewById<TextView>(R.id.status)
+
+        val userTitleExtra = findViewById<TextView>(R.id.title)
+        val userDescriptionExtra = findViewById<TextView>(R.id.desc)
+
+        val deleteBtn = findViewById<Button>(R.id.button1)
+        val update = findViewById<Button>(R.id.button2)
+
+        if (userDataList.isNotEmpty()) {
+
+            val user = userDataList[0]
+
+            val userName = user["userName"] ?: ""
+            val roleName = user["roleName"] ?: "Onbekende rol"
+            val status = user["active"] ?: ""
+
+            userTitleExtra.text = "Gebruiker: $userName"
+            userDescriptionExtra.text =
+                "De informatie van gebruiker $userName wordt hier weergegeven."
+
+            userNamePlaceholder.text = "Gebruikersnaam: $userName"
+            rolePlaceholder.text = "Rol: $roleName"
+            statusPlaceholder.text = "Status: $status"
+
+        } else {
+            Toast.makeText(this, "Gebruiker niet gevonden", Toast.LENGTH_SHORT).show()
+        }
+
+        deleteBtn.setOnClickListener {
+
+            if (userId == null) {
+                Toast.makeText(this, "Geen gebruiker gevonden", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            delete()
+
+            val intent = Intent(this, ShowAllUsers::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        update.setOnClickListener {
+
+            if (userId == null) {
+                Toast.makeText(this, "Geen gebruiker gevonden", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val intent = Intent(this, editUser::class.java)
+
+            // Als String doorgeven, omdat editUser getStringExtra gebruikt.
+            intent.putExtra("userId", userId.toString())
+
+            startActivity(intent)
+            finish()
+        }
+    }
+
+
 
         fun delete(){
             val cowId = intent.getStringExtra("userId")

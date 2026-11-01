@@ -1,11 +1,13 @@
 package com.example.cowmanagementsystem.notifications
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,6 +17,8 @@ import com.example.cowmanagementsystem.functies.BaseActivity
 import com.example.cowmanagementsystem.functies.ValidateInput
 import com.example.cowmanagementsystem.functies.generateList
 import com.example.cowmanagementsystem.login.Login
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 
 class AddNotifications : BaseActivity() {
@@ -51,6 +55,7 @@ class AddNotifications : BaseActivity() {
         def.vulKoeienDropdown(cowNumbers)
 
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getAllInfo(){
         val defclass = ValidateInput()
         val dbHelper = DatabaseHelper(this)
@@ -79,8 +84,9 @@ class AddNotifications : BaseActivity() {
                 "description" to descriptionNotificationText,
                 "cowId" to cowId,
                 "userId" to Login.UserID.toString(),
-                "createdOn" to "1",
-                "processed" to "0"
+                "createdOn" to LocalDate.now().format(
+                    DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString(),
+                "processed" to "Nee"
             )
             dbHelper.addItem(notificationInfo, "notifications")
 

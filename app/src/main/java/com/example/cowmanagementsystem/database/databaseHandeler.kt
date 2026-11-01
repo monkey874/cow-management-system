@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter
 
 
 class DatabaseHelper(context: Context) :
-    SQLiteOpenHelper(context, "cowManagementSystem.db", null, 21) {
+    SQLiteOpenHelper(context, "cowManagementSystem.db", null, 23) {
 
     override fun onCreate(db: SQLiteDatabase) {
 
@@ -45,7 +45,7 @@ class DatabaseHelper(context: Context) :
         active
     ) VALUES (?, ?, ?, ?)
     """.trimIndent(),
-            arrayOf("Admin", hashedPassword, 1, 1)
+            arrayOf("Admin", hashedPassword, 1, "Actief")
         )
         db.execSQL(
             """
@@ -638,5 +638,73 @@ class DatabaseHelper(context: Context) :
             }
         }
         return info
+    }
+
+    fun join(userId: Int): MutableList<Map<String, String>> {
+
+        val db = readableDatabase
+
+        val cursor = db.rawQuery(
+            """
+        SELECT
+            users.*,
+            roles.roleName AS roleName
+        FROM users
+        LEFT JOIN roles ON users.roleId = roles.roleId
+        WHERE users.userId = ?
+        """.trimIndent(),
+            arrayOf(userId.toString())
+        )
+
+        val userDataList = mutableListOf<Map<String, String>>()
+
+        cursor.use {
+            if (it.moveToFirst()) {
+                val userData = mutableMapOf<String, String>()
+
+                for (i in 0 until it.columnCount) {
+                    userData[it.getColumnName(i)] = it.getString(i) ?: ""
+                }
+
+                userDataList.add(userData)
+            }
+        }
+
+        return userDataList
+    }
+
+    fun joinNotification(notificationId: Int): MutableList<Map<String, String>> {
+
+        val db = readableDatabase
+
+        val cursor = db.rawQuery(
+            """
+        SELECT
+            notifications.*,
+            cows.cowNumber AS cowNumber,
+            users.userName AS userName
+        FROM notifications
+        LEFT JOIN cows ON notifications.cowId = cows.cowID
+        LEFT JOIN users ON notifications.userId = users.userId
+        WHERE notifications.notificationId = ?
+        """.trimIndent(),
+            arrayOf(notificationId.toString())
+        )
+
+        val notificationDataList = mutableListOf<Map<String, String>>()
+
+        cursor.use {
+            if (it.moveToFirst()) {
+                val notification = mutableMapOf<String, String>()
+
+                for (i in 0 until it.columnCount) {
+                    notification[it.getColumnName(i)] = it.getString(i) ?: ""
+                }
+
+                notificationDataList.add(notification)
+            }
+        }
+
+        return notificationDataList
     }
 }

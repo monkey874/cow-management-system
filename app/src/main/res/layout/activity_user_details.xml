@@ -98,9 +98,8 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="10dp"
                 android:text="Gebruikersnaam:"
-                android:textColor="#263238"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textColor="#546E7A"
+                android:textSize="16sp" />
 
             <View
                 android:layout_width="match_parent"

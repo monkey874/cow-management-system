@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,48 +28,99 @@ class NotificationDetails : BaseActivity() {
         setupBackButton()
     }
     @SuppressLint("SetTextI18n")
-    fun  getAllInfo(){
-        val notificationId = intent.getStringExtra("notificationId")
-        val dbHelper = DatabaseHelper(this)
-        val notificationDataList = dbHelper.getId("notifications", notificationId?.toIntOrNull() ?: 0, "notificationId" )
+    fun getAllInfo() {
 
-        // all text field placeholder and buttons
-        val notificationsDescriptionPlaceholder = findViewById<TextView>(R.id.desc)
-        val notificationsTitlePlaceholder = findViewById<TextView>(R.id.title)
+        // Haal het melding-ID op
+        val notificationId = intent.getStringExtra("notificationId")?.toIntOrNull()
 
-        val notificationsDescriptionExtra = findViewById<TextView>(R.id.textOmschrijving)
-        val notificationsTitleExtra = findViewById<TextView>(R.id.titleOmschrijving)
-        val cowConnection = findViewById<TextView>(R.id.cowConnetion)
-        val user = findViewById<TextView>(R.id.user)
-        val dataOfBuld = findViewById<TextView>(R.id.aangemaaktOp)
-        val processed = findViewById<TextView>(R.id.proccesd)
-
-        val deleteButton = findViewById<Button>(R.id.button1)
-
-
-        // set all the values on the notificationDetails page
-        if (notificationDataList.isNotEmpty()) {
-        val notification = notificationDataList[0]
-
-            notificationsTitlePlaceholder.text = ("Melding: " + notification["title"])
-            notificationsDescriptionPlaceholder.text = ("De informatie van melding word hier weegegeven.")
-
-            notificationsTitleExtra.text = ("Titel: " + notification["title"])
-            notificationsDescriptionExtra.text = ("Omschrijving: " +notification["description"])
-            cowConnection.text = ("Gekoppeld met koe: " + notification["cowId"])
-            user.text = ("Gemaakt door gebruiker: " + notification["userId"])
-            dataOfBuld.text = ("Aagemaakt op: " + notification["createdOn"])
-            processed.text = ("verwerkt: " + notification["processed"])
-
+        if (notificationId == null) {
+            Toast.makeText(this, "Geen melding gevonden", Toast.LENGTH_SHORT).show()
+            finish()
+            return
         }
 
+        val dbHelper = DatabaseHelper(this)
+
+        // Haal de melding inclusief koeiennummer en gebruikersnaam op
+        val notificationDataList = dbHelper.joinNotification(notificationId)
+
+        // Koppel de TextViews aan de XML
+        val notificationsDescriptionPlaceholder =
+            findViewById<TextView>(R.id.desc)
+
+        val notificationsTitlePlaceholder =
+            findViewById<TextView>(R.id.title)
+
+        val notificationsDescriptionExtra =
+            findViewById<TextView>(R.id.textOmschrijving)
+
+        val notificationsTitleExtra =
+            findViewById<TextView>(R.id.titleOmschrijving)
+
+        val cowConnection =
+            findViewById<TextView>(R.id.cowConnetion)
+
+        val user =
+            findViewById<TextView>(R.id.user)
+
+        val dataOfBuld =
+            findViewById<TextView>(R.id.aangemaaktOp)
+
+        val processed =
+            findViewById<TextView>(R.id.proccesd)
+
+        val deleteButton =
+            findViewById<Button>(R.id.button1)
+
+        // Controleer of de melding bestaat
+        if (notificationDataList.isNotEmpty()) {
+
+            val notification = notificationDataList[0]
+
+            // Haal alle gegevens op
+            val title = notification["title"] ?: ""
+            val description = notification["description"] ?: ""
+            val cowNumber = notification["cowNumber"] ?: "Onbekende koe"
+            val userName = notification["userName"] ?: "Onbekende gebruiker"
+            val createdOn = notification["createdOn"] ?: ""
+            val processedStatus = notification["processed"] ?: ""
+
+            // Vul de pagina
+            notificationsTitlePlaceholder.text = "Melding: $title"
+
+            notificationsDescriptionPlaceholder.text =
+                "De informatie van deze melding wordt hier weergegeven."
+
+            notificationsTitleExtra.text = "Titel: $title"
+            notificationsDescriptionExtra.text = "Omschrijving: $description"
+
+            cowConnection.text = "Gekoppeld met koe: $cowNumber"
+            user.text = "Gemaakt door gebruiker: $userName"
+
+            dataOfBuld.text = "Aangemaakt op: $createdOn"
+            processed.text = "Verwerkt: $processedStatus"
+
+        } else {
+            Toast.makeText(this, "Melding niet gevonden", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
+        // Verwijder de melding
         deleteButton.setOnClickListener {
-            delete()
+
+            dbHelper.delete(
+                "notifications",
+                notificationId,
+                "notificationId"
+            )
+
+            Toast.makeText(this, "Melding verwijderd", Toast.LENGTH_SHORT).show()
+
             val intent = Intent(this, ShowAllNotifications::class.java)
             startActivity(intent)
+            finish()
         }
-
-
     }
 
     fun delete(){

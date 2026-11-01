@@ -64,8 +64,8 @@ class ActivityDashboard : AppCompatActivity() {
                     }
 
                     R.id.historyButton -> {
-                        val intent = Intent(this, History::class.java)
-                        startActivity(intent)
+                        //val intent = Intent(this, History::class.java)
+                        //startActivity(intent)
                     }
 
                     R.id.btnAddCow -> {
